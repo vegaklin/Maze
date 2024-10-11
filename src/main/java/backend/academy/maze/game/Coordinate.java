@@ -1,4 +1,4 @@
 package backend.academy.maze.game;
 
-public class Coordinate {
-}
+public record Coordinate(int row, int col) {}
+
