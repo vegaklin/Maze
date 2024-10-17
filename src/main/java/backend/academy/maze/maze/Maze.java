@@ -1,4 +1,4 @@
-package backend.academy.maze.game;
+package backend.academy.maze.maze;
 
 public final class Maze {
     private final int height;
@@ -24,8 +24,23 @@ public final class Maze {
         return width;
     }
 
-    public Cell getCellElement(int row, int col) {
+    public Cell getGridElement(int row, int col) {
         return grid[row][col];
     }
-}
 
+    public void addPassageToGrid(int row, int col) {
+        grid[row][col] = new Cell(row, col, Cell.Type.PASSAGE);
+    }
+
+    public boolean isPassageInGrid(int row, int col) {
+        return grid[row][col].type() == Cell.Type.PASSAGE;
+    }
+
+    public void addWallToGrid(int row, int col) {
+        grid[row][col] = new Cell(row, col, Cell.Type.WALL);
+    }
+
+    public boolean isWallInGrid(int row, int col) {
+        return grid[row][col].type() == Cell.Type.WALL;
+    }
+}
