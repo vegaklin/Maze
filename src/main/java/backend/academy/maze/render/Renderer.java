@@ -1,8 +1,6 @@
 package backend.academy.maze.render;
 
-import backend.academy.maze.game.Coordinate;
-import backend.academy.maze.game.Maze;
-import java.util.List;
+import backend.academy.maze.maze.Maze;
 
 public interface Renderer {
     String render(Maze maze);
