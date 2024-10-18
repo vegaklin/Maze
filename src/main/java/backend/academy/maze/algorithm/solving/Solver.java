@@ -1,7 +1,7 @@
 package backend.academy.maze.algorithm.solving;
 
-import backend.academy.maze.game.Coordinate;
-import backend.academy.maze.game.Maze;
+import backend.academy.maze.maze.Coordinate;
+import backend.academy.maze.maze.Maze;
 import java.util.List;
 
 public interface Solver {

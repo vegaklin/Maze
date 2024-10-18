@@ -1,5 +1,6 @@
 package backend.academy.maze.algorithm.generation.prim;
 
+import backend.academy.maze.algorithm.generation.Edge;
 import backend.academy.maze.algorithm.generation.Generator;
 import backend.academy.maze.maze.Maze;
 import java.awt.Point;
@@ -23,7 +24,7 @@ public class PrimsGenerator implements Generator {
         int newWidth = validateMazeSize(width);
 
         Maze maze = new Maze(newHeight, newWidth);
-        PriorityQueue<Edge> availableEdges = new PriorityQueue<>(Comparator.comparingInt(edge -> edge.weight));
+        PriorityQueue<Edge> availableEdges = new PriorityQueue<>(Comparator.comparingInt(Edge::weight));
 
         algorithmImplementation(maze, availableEdges, height, width);
 
@@ -36,9 +37,9 @@ public class PrimsGenerator implements Generator {
 
         while (!availableEdges.isEmpty()) {
             Edge edge = availableEdges.poll();
-            if (maze.isWallInGrid(edge.to.y, edge.to.x)) {
-                connect(maze, edge.from, edge.to);
-                addEdge(maze, availableEdges, edge.to.y, edge.to.x, height, width);
+            if (maze.isWallInGrid(edge.to().y, edge.to().x)) {
+                connect(maze, edge.from(), edge.to());
+                addEdge(maze, availableEdges, edge.to().y, edge.to().x, height, width);
             }
         }
 
@@ -71,10 +72,7 @@ public class PrimsGenerator implements Generator {
         if (size <= 1) {
             throw new IllegalArgumentException("Incorrect maze size.");
         }
-        if (size % 2 == 0) {
-            return size + 1;
-        }
-        return size;
+        return (size % 2 == 0) ? size + 1 : size;
     }
 
     private Maze addStartEndForMaze(Maze maze, int height, int width) {
