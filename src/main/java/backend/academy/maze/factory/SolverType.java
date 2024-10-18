@@ -1,4 +1,6 @@
 package backend.academy.maze.factory;
 
-public class SolverType {
+public enum SolverType {
+    A_STAR,
+    BFS
 }

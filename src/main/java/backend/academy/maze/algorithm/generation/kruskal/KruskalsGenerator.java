@@ -21,9 +21,6 @@ public class KruskalsGenerator implements Generator {
         DisjointSet ds = new DisjointSet((newHeight / 2) * (newWidth / 2));
 
         kruskalAgorithmImplementation(maze, edges, ds, newWidth);
-
-        addEntranceAndExit(maze, newHeight, newWidth);
-
         return maze;
     }
 
@@ -67,10 +64,5 @@ public class KruskalsGenerator implements Generator {
                 maze.addPassageToGrid((from.y + to.y) + 1, (from.x + to.x) + 1);
             }
         }
-    }
-
-    private void addEntranceAndExit(Maze maze, int height, int width) {
-        maze.addPassageToGrid(1, 0);
-        maze.addPassageToGrid(height - 2, width - 1);
     }
 }

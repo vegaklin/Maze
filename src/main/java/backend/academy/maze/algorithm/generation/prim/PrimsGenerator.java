@@ -28,7 +28,7 @@ public class PrimsGenerator implements Generator {
 
         algorithmImplementation(maze, availableEdges, height, width);
 
-        return addStartEndForMaze(maze, newHeight, newWidth);
+        return maze;
     }
 
     private void algorithmImplementation(Maze maze, PriorityQueue<Edge> availableEdges, int height, int width) {
@@ -73,11 +73,5 @@ public class PrimsGenerator implements Generator {
             throw new IllegalArgumentException("Incorrect maze size.");
         }
         return (size % 2 == 0) ? size + 1 : size;
-    }
-
-    private Maze addStartEndForMaze(Maze maze, int height, int width) {
-        maze.addPassageToGrid(1, 0);
-        maze.addPassageToGrid(height - 2, width - 1);
-        return maze;
     }
 }
