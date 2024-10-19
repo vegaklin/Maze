@@ -10,8 +10,8 @@ public class AStarMazeSolver implements Solver {
 
     @Override
     public List<Coordinate> solve(Maze maze, Coordinate start, Coordinate end) {
-        int height = maze.getHeight();
-        int width = maze.getWidth();
+        int height = maze.height();
+        int width = maze.width();
 
         // gCost - расстояние от старта до текущей клетки
         Map<Coordinate, Integer> gCost = new HashMap<>();
@@ -72,8 +72,8 @@ public class AStarMazeSolver implements Solver {
             int newRow = current.row() + direction[0];
             int newCol = current.col() + direction[1];
 
-            if (newRow >= 0 && newRow < maze.getHeight() &&
-                newCol >= 0 && newCol < maze.getWidth() &&
+            if (newRow >= 0 && newRow < maze.height() &&
+                newCol >= 0 && newCol < maze.width() &&
                 maze.isPassageInGrid(newRow, newCol)) {
                 neighbors.add(new Coordinate(newRow, newCol));
             }

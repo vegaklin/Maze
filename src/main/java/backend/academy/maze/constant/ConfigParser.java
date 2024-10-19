@@ -1,12 +1,12 @@
 package backend.academy.maze.constant;
 
-import lombok.extern.log4j.Log4j2;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
+import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 public class ConfigParser {

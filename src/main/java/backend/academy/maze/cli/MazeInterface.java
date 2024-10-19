@@ -6,13 +6,10 @@ import backend.academy.maze.factory.GeneratorType;
 import backend.academy.maze.factory.SolverType;
 import backend.academy.maze.maze.Coordinate;
 import backend.academy.maze.maze.Maze;
-import backend.academy.maze.render.ConsoleRenderer;
 import backend.academy.maze.render.Renderer;
 import java.io.PrintStream;
-import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Objects;
 import java.util.Scanner;
 import static backend.academy.maze.factory.MazeGeneratorFactory.createMazeGenerator;
 import static backend.academy.maze.factory.MazeSolverFactory.createMazeSolver;
@@ -61,7 +58,7 @@ public class MazeInterface {
 
     public int mazeStartEndChooser(Scanner scanner, PrintStream out, int height) {
         int selectionAttempts = 10;
-        while(selectionAttempts > 0) {
+        while (selectionAttempts > 0) {
             try {
                 int point = scanner.nextInt();
                 if (isCorrectStartEndPoint(point, height)) {
@@ -147,7 +144,7 @@ public class MazeInterface {
 
     public Solver solverChooser(Scanner scanner, PrintStream out) {
         int selectionAttempts = 10;
-        while(selectionAttempts > 0) {
+        while (selectionAttempts > 0) {
             try {
                 int menuNumber = scanner.nextInt();
                 if (isValidMenuNumber(menuNumber)) {
@@ -198,7 +195,7 @@ public class MazeInterface {
 
     public int mazeSizeChooser(Scanner scanner, PrintStream out) {
         int selectionAttempts = 10;
-        while(selectionAttempts > 0) {
+        while (selectionAttempts > 0) {
             try {
                 int size = scanner.nextInt();
                 if (isCorrectMazeSize(size)) {
