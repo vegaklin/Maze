@@ -116,24 +116,30 @@ public class MazeInterface {
     public Generator generatorChooser(Scanner scanner, PrintStream out) {
         int selectionAttempts = 10;
         while(selectionAttempts > 0) {
-            String input = scanner.nextLine().trim();
-            if (isValidMenuNumber(input)) {
-                return createMazeGenerator(generatorTypeFromMenu(input));
+            try {
+                int menuNumber = scanner.nextInt();
+                if (isValidMenuNumber(menuNumber)) {
+                    return createMazeGenerator(generatorTypeFromMenu(menuNumber));
+                } else {
+                    out.println("You have entered an incorrect generation algorithm. Try again:");
+                }
+            } catch (InputMismatchException e) {
+                out.println("You entered an incorrect number. Try again:");
+                scanner.next();
             }
-            out.println("You have entered an incorrect generation algorithm. Try again:");
             selectionAttempts--;
         }
         return createMazeGenerator(GeneratorType.KRUSKAL);
     }
 
-    public boolean isValidMenuNumber(String input) {
-        return Objects.equals(input, "1") || Objects.equals(input, "2");
+    public boolean isValidMenuNumber(int input) {
+        return input == 1 || input == 2;
     }
 
-    public GeneratorType generatorTypeFromMenu(String number) {
+    public GeneratorType generatorTypeFromMenu(int number) {
         return switch (number) {
-            case "1" -> GeneratorType.KRUSKAL;
-            case "2" -> GeneratorType.PRIM;
+            case 1 -> GeneratorType.KRUSKAL;
+            case 2 -> GeneratorType.PRIM;
             default -> throw new IllegalArgumentException("Incorrect menu number for generator type.");
         };
     }
@@ -142,20 +148,26 @@ public class MazeInterface {
     public Solver solverChooser(Scanner scanner, PrintStream out) {
         int selectionAttempts = 10;
         while(selectionAttempts > 0) {
-            String input = scanner.nextLine().trim();
-            if (isValidMenuNumber(input)) {
-                return createMazeSolver(solverTypeFromMenu(input));
+            try {
+                int menuNumber = scanner.nextInt();
+                if (isValidMenuNumber(menuNumber)) {
+                    return createMazeSolver(solverTypeFromMenu(menuNumber));
+                } else {
+                    out.println("You have entered an incorrect path finding algorithm. Try again:");
+                }
+            } catch (InputMismatchException e) {
+                out.println("You entered an incorrect number. Try again:");
+                scanner.next();
             }
-            out.println("You have entered an incorrect path finding algorithm. Try again:");
             selectionAttempts--;
         }
         return createMazeSolver(SolverType.BFS);
     }
 
-    public SolverType solverTypeFromMenu(String number) {
+    public SolverType solverTypeFromMenu(int number) {
         return switch (number) {
-            case "1" -> SolverType.A_STAR;
-            case "2" -> SolverType.BFS;
+            case 1 -> SolverType.A_STAR;
+            case 2 -> SolverType.BFS;
             default -> throw new IllegalArgumentException("Incorrect menu number for solver type.");
         };
     }
