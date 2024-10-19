@@ -14,7 +14,7 @@ public class DisjointSet {
 
     public int find(int point) {
         if (parent[point] != point) {
-            parent[point] = find(parent[point]);  // Path compression
+            parent[point] = find(parent[point]);
         }
         return parent[point];
     }
@@ -22,7 +22,6 @@ public class DisjointSet {
     public void union(int x, int y) {
         int rootX = find(x);
         int rootY = find(y);
-
         if (rootX != rootY) {
             if (rank[rootX] > rank[rootY]) {
                 parent[rootY] = rootX;

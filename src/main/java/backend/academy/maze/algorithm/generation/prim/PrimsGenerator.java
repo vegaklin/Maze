@@ -7,12 +7,12 @@ import java.awt.Point;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Random;
+import static backend.academy.maze.constant.MazeConstants.PRIMS_START_COL;
+import static backend.academy.maze.constant.MazeConstants.PRIMS_START_ROW;
+import static backend.academy.maze.validation.MazeValidator.validateMazeSize;
 
 public class PrimsGenerator implements Generator {
     private final Random random;
-
-    private static final int START_ROW = 1;
-    private static final int START_COL = 1;
 
     public PrimsGenerator() {
         random = new Random();
@@ -26,15 +26,13 @@ public class PrimsGenerator implements Generator {
         Maze maze = new Maze(newHeight, newWidth);
         PriorityQueue<Edge> availableEdges = new PriorityQueue<>(Comparator.comparingInt(Edge::weight));
 
-        algorithmImplementation(maze, availableEdges, height, width);
-
+        primAlgorithmImplementation(maze, availableEdges, height, width);
         return maze;
     }
 
-    private void algorithmImplementation(Maze maze, PriorityQueue<Edge> availableEdges, int height, int width) {
-        maze.addPassageToGrid(START_ROW, START_COL);
-        addEdge(maze, availableEdges, START_ROW, START_COL, height, width);
-
+    private void primAlgorithmImplementation(Maze maze, PriorityQueue<Edge> availableEdges, int height, int width) {
+        maze.addPassageToGrid(PRIMS_START_ROW, PRIMS_START_COL);
+        addEdge(maze, availableEdges, PRIMS_START_ROW, PRIMS_START_COL, height, width);
         while (!availableEdges.isEmpty()) {
             Edge edge = availableEdges.poll();
             if (maze.isWallInGrid(edge.to().y, edge.to().x)) {
@@ -66,12 +64,5 @@ public class PrimsGenerator implements Generator {
         maze.addPassageToGrid(p1.y, p1.x);
         maze.addPassageToGrid(y, x);
         maze.addPassageToGrid(p2.y, p2.x);
-    }
-
-    private int validateMazeSize(int size) {
-        if (size <= 1) {
-            throw new IllegalArgumentException("Incorrect maze size.");
-        }
-        return (size % 2 == 0) ? size + 1 : size;
     }
 }
