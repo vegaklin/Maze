@@ -4,6 +4,7 @@ import backend.academy.maze.algorithm.generation.Generator;
 import backend.academy.maze.algorithm.solving.Solver;
 import backend.academy.maze.factory.GeneratorType;
 import backend.academy.maze.factory.SolverType;
+import backend.academy.maze.improvement.MazeAdditionalPath;
 import backend.academy.maze.maze.Coordinate;
 import backend.academy.maze.maze.Maze;
 import backend.academy.maze.render.Renderer;
@@ -29,6 +30,10 @@ public class MazeInterface {
         int width = inputWidth(scanner, out);
 
         Maze maze = generator.generate(height, width);
+        out.print(renderer.render(maze));
+        MazeAdditionalPath moder = new MazeAdditionalPath();
+        moder.addingPathsInMaze(maze);
+
         int start = inputMazeStartPoint(scanner, out, maze, height);
         int end = inputMazeEndPoint(scanner, out, maze, height);
         Coordinate startCoordinate = new Coordinate(start, 0);
