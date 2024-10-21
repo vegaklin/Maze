@@ -13,7 +13,7 @@ public final class Maze {
         this.grid = new Cell[height][width];
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
-                grid[row][col] = new Cell(row, col, Type.WALL);
+                addWallToGrid(row, col);
             }
         }
     }

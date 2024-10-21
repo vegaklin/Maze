@@ -2,139 +2,66 @@ package backend.academy.maze.render;
 
 import backend.academy.maze.maze.Coordinate;
 import backend.academy.maze.maze.Maze;
+import backend.academy.maze.maze.Type;
 import java.util.List;
 
 public class ConsoleRenderer implements Renderer {
+
     @Override
     public String render(Maze maze) {
-        StringBuilder mazeImage = new StringBuilder();
-        for (int row = 0; row < maze.height(); row++) {
-            for (int col = 0; col < maze.width(); col++) {
-                switch (maze.getGridElement(row, col).type()) {
-                    case WALL:
-                        mazeImage.append("██");
-                        break;
-                    case PASSAGE:
-                        mazeImage.append("  ");
-                        break;
-                    case SWAMP:
-                        mazeImage.append("__");
-                        break;
-                    case SAND:
-                        mazeImage.append("&&");
-                        break;
-                    case COIN:
-                        mazeImage.append("()");
-                        break;
-                    case EAT:
-                        mazeImage.append("[]");
-                        break;
-                }
-            }
-            mazeImage.append("\n");
-        }
-        return mazeImage.toString();
+        return renderMaze(maze, null, false, false);
     }
 
     @Override
     public String render(Maze maze, List<Coordinate> path) {
-        StringBuilder mazeImage = new StringBuilder();
-        for (int row = 0; row < maze.height(); row++) {
-            for (int col = 0; col < maze.width(); col++) {
-                Coordinate current = new Coordinate(row, col);
-                switch (maze.getGridElement(row, col).type()) {
-                    case WALL:
-                        mazeImage.append("██");
-                        break;
-                    case PASSAGE:
-                        if (path.contains(current)) {
-                            mazeImage.append("**");
-                        }
-                        else {
-                            mazeImage.append("  ");
-                        }
-                        break;
-                    case SWAMP:
-                        mazeImage.append("__");
-                        break;
-                    case SAND:
-                        mazeImage.append("&&");
-                        break;
-                    case COIN:
-                        mazeImage.append("()");
-                        break;
-                    case EAT:
-                        mazeImage.append("[]");
-                        break;
-                }
-            }
-            mazeImage.append("\n");
-        }
-        return mazeImage.toString();
+        return renderMaze(maze, path, false, false);
     }
 
     @Override
     public String renderWithNumberOfRowsFront(Maze maze) {
+        return renderMaze(maze, null, true, false);
+    }
+
+    @Override
+    public String renderWithNumberOfRowsBack(Maze maze) {
+        return renderMaze(maze, null, false, true);
+    }
+
+    private String renderMaze(Maze maze, List<Coordinate> path, boolean showNumbersFront, boolean showNumbersBack) {
         StringBuilder mazeImage = new StringBuilder();
         for (int row = 0; row < maze.height(); row++) {
-            addNumberOfRowToRenderFront(maze, row, mazeImage);
-            for (int col = 0; col < maze.width(); col++) {
-                switch (maze.getGridElement(row, col).type()) {
-                    case WALL:
-                        mazeImage.append("██");
-                        break;
-                    case PASSAGE:
-                        mazeImage.append("  ");
-                        break;
-                    case SWAMP:
-                        mazeImage.append("__");
-                        break;
-                    case SAND:
-                        mazeImage.append("&&");
-                        break;
-                    case COIN:
-                        mazeImage.append("()");
-                        break;
-                    case EAT:
-                        mazeImage.append("[]");
-                        break;
-                }
+            if (showNumbersFront) {
+                addNumberOfRowToRenderFront(maze, row, mazeImage);
             }
+
+            renderRow(maze, path, mazeImage, row);
+
+            if (showNumbersBack) {
+                addNumberOfRowToRenderEnd(maze, row, mazeImage);
+            }
+
             mazeImage.append("\n");
         }
         return mazeImage.toString();
     }
 
-    @Override
-    public String renderWithNumberOfRowsBack(Maze maze) {
-        StringBuilder mazeImage = new StringBuilder();
-        for (int row = 0; row < maze.height(); row++) {
-            for (int col = 0; col < maze.width(); col++) {
-                switch (maze.getGridElement(row, col).type()) {
-                    case WALL:
-                        mazeImage.append("██");
-                        break;
-                    case PASSAGE:
-                        mazeImage.append("  ");
-                        break;
-                    case SWAMP:
-                        mazeImage.append("__");
-                        break;
-                    case SAND:
-                        mazeImage.append("~~");
-                        break;
-                    case COIN:
-                        mazeImage.append("()");
-                        break;
-                    case EAT:
-                        mazeImage.append("[]");
-                        break;
-                }
-            }
-            addNumberOfRowToRenderEnd(maze, row, mazeImage);
-            mazeImage.append("\n");
+    private void renderRow(Maze maze, List<Coordinate> path, StringBuilder mazeImage, int row) {
+        for (int col = 0; col < maze.width(); col++) {
+            Coordinate current = new Coordinate(row, col);
+            Type cellType = maze.getGridElement(row, col).type();
+            mazeImage.append(getCellRepresentation(cellType, path != null && path.contains(current)));
         }
-        return mazeImage.toString();
+    }
+
+    private String getCellRepresentation(Type cellType, boolean isPath) {
+        return switch (cellType) {
+            case WALL -> "██";
+            case PASSAGE -> isPath ? "**" : "  ";
+            case SWAMP -> "__";
+            case SAND -> "~~";
+            case COIN -> "()";
+            case EAT -> "[]";
+        };
     }
 
     private void addNumberOfRowToRenderFront(Maze maze, int row, StringBuilder mazeImage) {
@@ -149,14 +76,13 @@ public class ConsoleRenderer implements Renderer {
         }
     }
 
-    private int countNumberOfDigits(int number) {
-        return String.valueOf(number).length();
-    }
-
     private void addNumberOfRowToRenderEnd(Maze maze, int row, StringBuilder mazeImage) {
         if (row > 0 && row < maze.height() - 1) {
             mazeImage.append(row);
         }
     }
-}
 
+    private int countNumberOfDigits(int number) {
+        return String.valueOf(number).length();
+    }
+}

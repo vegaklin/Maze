@@ -18,13 +18,9 @@ public class MazeAdditionalPath {
             while(maze.isPassageInGrid(row, col) && col < width - 1) {
                 col++;
             }
-            int wallLength = 1;
             int startPoint = col;
             for (; col < width - 1; col++) {
-                if (maze.isWallInGrid(row, col)) {
-                    wallLength++;
-                }
-                else {
+                if (maze.isPassageInGrid(row, col)) {
                     walls.add(new Wall(new Point(row, startPoint), new Point(row, col - 1), col - 1 - startPoint + 1));
                     while(maze.isPassageInGrid(row, col) && col < width - 1) {
                         col++;

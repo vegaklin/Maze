@@ -36,6 +36,7 @@ import static backend.academy.maze.constant.MazeConstants.SWAMP_COST;
             case EAT:
                 this.cost = EAT_COST;
                 break;
+            default: throw new IllegalArgumentException("Incorrect Maze Type.");
         }
     }
 }
