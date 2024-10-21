@@ -11,6 +11,8 @@ public class MazeValidator {
         return (size % 2 == 0) ? size + 1 : size;
     }
 
-
+    public static boolean isValidRowCol(int row, int col, int height, int width) {
+        return row >= 0 && row < height && col >= 0 && col < width;
+    }
 
 }
