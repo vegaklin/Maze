@@ -16,6 +16,11 @@ public class MazeConstants {
     public static final int DEFAULT_COST = configParser.get("DEFAULT_COST", Integer.class);
     public static final int EAT_COST = configParser.get("EAT_COST", Integer.class);
     public static final int COIN_COST = configParser.get("COIN_COST", Integer.class);
+    public static final int NUMBER_PATHS_ADD = configParser.get("NUMBER_PATHS_ADD", Integer.class);
+    public static final int SWAMP_PROBABILITY = configParser.get("SWAMP_PROBABILITY", Integer.class);
+    public static final int SAND_PROBABILITY = configParser.get("SAND_PROBABILITY", Integer.class);
+    public static final int EAT_PROBABILITY = configParser.get("EAT_PROBABILITY", Integer.class);
+    public static final int COIN_PROBABILITY = configParser.get("COIN_PROBABILITY", Integer.class);
     public static final int[][] DIRECTIONS = {
         {-1, 0},
         {1, 0},

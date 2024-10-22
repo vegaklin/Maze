@@ -5,18 +5,16 @@ import backend.academy.maze.algorithm.solving.Solver;
 import backend.academy.maze.factory.GeneratorType;
 import backend.academy.maze.factory.SolverType;
 import backend.academy.maze.improvement.MazeAdditionalPath;
-import backend.academy.maze.maze.Cell;
 import backend.academy.maze.maze.Coordinate;
 import backend.academy.maze.maze.Maze;
-import backend.academy.maze.maze.Type;
 import backend.academy.maze.render.Renderer;
 import java.io.PrintStream;
 import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
 import static backend.academy.maze.factory.MazeGeneratorFactory.createMazeGenerator;
 import static backend.academy.maze.factory.MazeSolverFactory.createMazeSolver;
+import static backend.academy.maze.improvement.MazeDifferentSurfacesMode.addDifferentSurfacesInMaze;
 
 public class MazeInterface {
     Renderer renderer;
@@ -33,38 +31,22 @@ public class MazeInterface {
         int width = inputWidth(scanner, out);
 
         Maze maze = generator.generate(height, width);
-//        out.print(renderer.render(maze));
+
         MazeAdditionalPath moder = new MazeAdditionalPath();
-        moder.addingPathsInMaze(maze);
+        Maze manyPatsMaze = moder.addingPathsInMaze(maze);
+        Maze differentSurfaceMaze = addDifferentSurfacesInMaze(manyPatsMaze);
 
-        Random random = new Random();
-        for (int row = 0; row < height; row++) {
-            for (int col = 0; col < width; col++) {
-                if(maze.isPassageInGrid(row, col)) {
-                    if (random.nextDouble() < 0.1) {
-                        maze.addModeToGrid(row, col, Type.SWAMP); // Болота
-                    } else if (random.nextDouble() < 0.07) {
-                        maze.addModeToGrid(row, col, Type.SAND); // Песок
-                    } else if (random.nextDouble() < 0.05) {
-                        maze.addModeToGrid(row, col, Type.COIN); // Монеты
-                    }
-                }
-            }
-        }
-//        maze.addModeToGrid(3, 3, Type.COIN);
-//        maze.addModeToGrid(5, 5, Type.COIN);
-
-        int start = inputMazeStartPoint(scanner, out, maze, height);
-        int end = inputMazeEndPoint(scanner, out, maze, height);
+        int start = inputMazeStartPoint(scanner, out, differentSurfaceMaze, height);
+        int end = inputMazeEndPoint(scanner, out, differentSurfaceMaze, height);
         Coordinate startCoordinate = new Coordinate(start, 0);
         Coordinate endCoordinate = new Coordinate(end, width - 1);
-        maze.addPassageToGrid(startCoordinate.row(), startCoordinate.col());
-        maze.addPassageToGrid(endCoordinate.row(), endCoordinate.col());
+        differentSurfaceMaze.addPassageToGrid(startCoordinate.row(), startCoordinate.col());
+        differentSurfaceMaze.addPassageToGrid(endCoordinate.row(), endCoordinate.col());
 
         Solver solver = solveAlgorithmChoosing(scanner, out);
-        List<Coordinate> mazeWithPath = solver.solve(maze, startCoordinate, endCoordinate);
+        List<Coordinate> mazeWithPath = solver.solve(differentSurfaceMaze, startCoordinate, endCoordinate);
 
-        out.print(renderer.render(maze, mazeWithPath));
+        out.print(renderer.render(differentSurfaceMaze, mazeWithPath));
     }
 
     public int inputMazeStartPoint(Scanner scanner, PrintStream out, Maze maze, int height) {

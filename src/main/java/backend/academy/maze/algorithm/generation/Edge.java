@@ -1,20 +1,20 @@
 package backend.academy.maze.algorithm.generation;
 
-import java.awt.Point;
+import backend.academy.maze.maze.Coordinate;
 import lombok.Getter;
 
 @Getter public class Edge {
-    private final Point from;
-    private final Point to;
+    private final Coordinate from;
+    private final Coordinate to;
     private final int weight;
 
-    public Edge(Point from, Point to) {
+    public Edge(Coordinate from, Coordinate to) {
         this.from = from;
         this.to = to;
         this.weight = 0;
     }
 
-    public Edge(Point from, Point to, int weight) {
+    public Edge(Coordinate from, Coordinate to, int weight) {
         this.from = from;
         this.to = to;
         this.weight = weight;

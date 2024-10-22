@@ -2,8 +2,8 @@ package backend.academy.maze.algorithm.generation.kruskal;
 
 import backend.academy.maze.algorithm.generation.Edge;
 import backend.academy.maze.algorithm.generation.Generator;
+import backend.academy.maze.maze.Coordinate;
 import backend.academy.maze.maze.Maze;
-import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -28,12 +28,12 @@ public class KruskalsGenerator implements Generator {
         List<Edge> edges = new ArrayList<>();
         for (int y = 0; y < height / 2; y++) {
             for (int x = 0; x < width / 2; x++) {
-                Point cell = new Point(x, y);
+                Coordinate cell = new Coordinate(x, y);
                 if (x < (width / 2) - 1) {
-                    edges.add(new Edge(cell, new Point(x + 1, y)));
+                    edges.add(new Edge(cell, new Coordinate(x + 1, y)));
                 }
                 if (y < (height / 2) - 1) {
-                    edges.add(new Edge(cell, new Point(x, y + 1)));
+                    edges.add(new Edge(cell, new Coordinate(x, y + 1)));
                 }
             }
         }
@@ -43,15 +43,15 @@ public class KruskalsGenerator implements Generator {
 
     private void kruskalAlgorithmImplementation(Maze maze, List<Edge> edges, DisjointSet sets, int width) {
         for (Edge edge : edges) {
-            Point from = edge.from();
-            Point to = edge.to();
-            int cell1 = from.y * (width / 2) + from.x;
-            int cell2 = to.y * (width / 2) + to.x;
+            Coordinate from = edge.from();
+            Coordinate to = edge.to();
+            int cell1 = from.col() * (width / 2) + from.row();
+            int cell2 = to.col() * (width / 2) + to.row();
             if (sets.find(cell1) != sets.find(cell2)) {
                 sets.union(cell1, cell2);
-                maze.addPassageToGrid(from.y * 2 + 1, from.x * 2 + 1);
-                maze.addPassageToGrid(to.y * 2 + 1, to.x * 2 + 1);
-                maze.addPassageToGrid((from.y + to.y) + 1, (from.x + to.x) + 1);
+                maze.addPassageToGrid(from.col() * 2 + 1, from.row() * 2 + 1);
+                maze.addPassageToGrid(to.col() * 2 + 1, to.row() * 2 + 1);
+                maze.addPassageToGrid((from.col() + to.col()) + 1, (from.row() + to.row()) + 1);
             }
         }
     }
