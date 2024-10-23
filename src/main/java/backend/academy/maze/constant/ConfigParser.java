@@ -46,6 +46,8 @@ public class ConfigParser {
             return type.cast(Integer.parseInt(value));
         } else if (type == Boolean.class) {
             return type.cast(Boolean.parseBoolean(value));
+        } else if (type == Double.class) {
+            return type.cast(Double.parseDouble(value));
         }
 
         throw new IllegalArgumentException("Unsupported type: " + type);
