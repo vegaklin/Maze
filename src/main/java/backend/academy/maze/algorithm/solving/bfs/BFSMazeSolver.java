@@ -13,10 +13,11 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import static backend.academy.maze.algorithm.solving.PathEditor.editPath;
 import static backend.academy.maze.constant.MazeConstants.DIRECTIONS;
+import static backend.academy.maze.constant.MazeConstants.DIRECTIONS_LEFT_INDEX;
+import static backend.academy.maze.constant.MazeConstants.DIRECTIONS_RIGHT_INDEX;
 import static backend.academy.maze.validation.MazeValidator.isValidRowCol;
 
 public class BFSMazeSolver implements Solver {
-
     @Override
     public List<Coordinate> solve(Maze maze, Coordinate start, Coordinate end) {
         int height = maze.height();
@@ -62,8 +63,8 @@ public class BFSMazeSolver implements Solver {
 
     private void processBFSNeighbor(Maze maze, BFSNode current, int[] direction,
                                     Queue<BFSNode> queue, int[][] visited) {
-        int newRow = current.coordinate().row() + direction[0];
-        int newCol = current.coordinate().col() + direction[1];
+        int newRow = current.coordinate().row() + direction[DIRECTIONS_LEFT_INDEX];
+        int newCol = current.coordinate().col() + direction[DIRECTIONS_RIGHT_INDEX];
         if (isValidRowCol(newRow, newCol, maze.height(), maze.width())) {
             Cell neighbor = maze.getGridElement(newRow, newCol);
             if (neighbor.type() != Type.WALL) {

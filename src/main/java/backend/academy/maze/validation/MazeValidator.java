@@ -11,19 +11,13 @@ public class MazeValidator {
         return (size % 2 == 0) ? size + 1 : size;
     }
 
+    public static void isCorrectRowCol(int row, int col, int width, int height) {
+        if (row < 0 || row >= width || col < 0 || col >= height) {
+            throw new IllegalArgumentException("Out of range in Maze.");
+        }
+    }
+
     public static boolean isValidRowCol(int row, int col, int height, int width) {
         return row >= 0 && row < height && col >= 0 && col < width;
-    }
-
-    public static boolean isCorrectMazeSize(int number) {
-        return number > 1;
-    }
-
-    public static boolean isCorrectStartEndPoint(int point, int height) {
-        return point >= 1 && point <= height - 2;
-    }
-
-    public static boolean isValidMenuNumber(int input) {
-        return input == 1 || input == 2;
     }
 }

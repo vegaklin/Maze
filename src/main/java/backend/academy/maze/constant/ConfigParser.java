@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.extern.log4j.Log4j2;
@@ -21,7 +22,7 @@ public class ConfigParser {
         if (inputStream == null) {
             throw new IllegalArgumentException("Файл не найден в ресурсах");
         }
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(":");
@@ -43,11 +44,11 @@ public class ConfigParser {
         if (type == String.class) {
             return type.cast(value);
         } else if (type == Integer.class) {
-            return type.cast(Integer.parseInt(value));
+            return type.cast(Integer.valueOf(value));
         } else if (type == Boolean.class) {
-            return type.cast(Boolean.parseBoolean(value));
+            return type.cast(Boolean.valueOf(value));
         } else if (type == Double.class) {
-            return type.cast(Double.parseDouble(value));
+            return type.cast(Double.valueOf(value));
         }
 
         throw new IllegalArgumentException("Unsupported type: " + type);

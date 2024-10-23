@@ -26,6 +26,9 @@ public class MazeConstants {
     public static final int DEFAULT_MENU_NUMBER = configParser.get("DEFAULT_MENU_NUMBER", Integer.class);
     public static final int DEFAULT_MAZE_SIZE = configParser.get("DEFAULT_MAZE_SIZE", Integer.class);
 
+    public static final int DIRECTIONS_LEFT_INDEX = configParser.get("DIRECTIONS_LEFT_INDEX", Integer.class);
+    public static final int DIRECTIONS_RIGHT_INDEX = configParser.get("DIRECTIONS_RIGHT_INDEX", Integer.class);
+
     public static final String INVALID_INPUT_MESSAGE = configParser.get("INVALID_INPUT_MESSAGE", String.class);
 
     public static final int[][] DIRECTIONS = {

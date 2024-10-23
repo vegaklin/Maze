@@ -6,7 +6,6 @@ import backend.academy.maze.maze.Type;
 import java.util.List;
 
 public class ConsoleRenderer implements Renderer {
-
     @Override
     public String render(Maze maze) {
         return renderMaze(maze, null, false, false);
@@ -33,14 +32,11 @@ public class ConsoleRenderer implements Renderer {
             if (showNumbersFront) {
                 addNumberOfRowToRenderFront(maze, row, mazeImage);
             }
-
             renderRow(maze, path, mazeImage, row);
-
             if (showNumbersBack) {
                 addNumberOfRowToRenderEnd(maze, row, mazeImage);
             }
-
-            mazeImage.append("\n");
+            mazeImage.append('\n');
         }
         return mazeImage.toString();
     }

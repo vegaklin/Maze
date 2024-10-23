@@ -11,33 +11,24 @@ import static backend.academy.maze.constant.MazeConstants.SWAMP_COST;
     private final Type type;
     private final int row;
     private final int col;
-    private int cost;
+    private final int cost;
 
     public Cell(int row, int col, Type type) {
         this.row = row;
         this.col = col;
         this.type = type;
-        switch (type) {
-            case WALL:
-                this.cost = Integer.MAX_VALUE;
-                break;
-            case PASSAGE:
-                this.cost = DEFAULT_COST;
-                break;
-            case SWAMP:
-                this.cost = SWAMP_COST;
-                break;
-            case SAND:
-                this.cost = SAND_COST;
-                break;
-            case COIN:
-                this.cost = COIN_COST;
-                break;
-            case EAT:
-                this.cost = EAT_COST;
-                break;
-            default: throw new IllegalArgumentException("Incorrect Maze Type.");
-        }
+        this.cost = calculateCost(type);
+    }
+
+    private int calculateCost(Type type) {
+        return switch (type) {
+            case WALL -> Integer.MAX_VALUE;
+            case PASSAGE -> DEFAULT_COST;
+            case SWAMP -> SWAMP_COST;
+            case SAND -> SAND_COST;
+            case COIN -> COIN_COST;
+            case EAT -> EAT_COST;
+        };
     }
 }
 

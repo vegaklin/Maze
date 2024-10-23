@@ -4,18 +4,18 @@ import backend.academy.maze.algorithm.generation.Edge;
 import backend.academy.maze.algorithm.generation.Generator;
 import backend.academy.maze.maze.Coordinate;
 import backend.academy.maze.maze.Maze;
+import java.security.SecureRandom;
 import java.util.Comparator;
 import java.util.PriorityQueue;
-import java.util.Random;
 import static backend.academy.maze.constant.MazeConstants.PRIMS_START_COL;
 import static backend.academy.maze.constant.MazeConstants.PRIMS_START_ROW;
 import static backend.academy.maze.validation.MazeValidator.validateMazeSize;
 
 public class PrimsGenerator implements Generator {
-    private final Random random;
+    private final SecureRandom random;
 
     public PrimsGenerator() {
-        random = new Random();
+        random = new SecureRandom();
     }
 
     @Override
