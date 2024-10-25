@@ -20,14 +20,14 @@ public class AStarMazeSolver implements Solver {
     public List<Coordinate> solve(Maze maze, Coordinate start, Coordinate end) {
         int height = maze.height();
         int width = maze.width();
-        PriorityQueue<AStarNode> openQueue = initializeOpenSet(start, end);
+        PriorityQueue<AStarNode> open = initializeOpenSet(start, end);
         int[][] gCost = initializeGCost(height, width, start);
 
-        boolean[][] closedSet = new boolean[height][width];
-        while (!openQueue.isEmpty()) {
-            AStarNode current = openQueue.poll();
+        boolean[][] closed = new boolean[height][width];
+        while (!open.isEmpty()) {
+            AStarNode current = open.poll();
 
-            if (processCurrentsAStarNode(maze, current, end, openQueue, gCost, closedSet)) {
+            if (processCurrentsAStarNode(maze, current, end, open, gCost, closed)) {
                 return editPath(current);
             }
         }
@@ -35,9 +35,9 @@ public class AStarMazeSolver implements Solver {
     }
 
     private PriorityQueue<AStarNode> initializeOpenSet(Coordinate start, Coordinate end) {
-        PriorityQueue<AStarNode> openQueue = new PriorityQueue<>(Comparator.comparingInt(AStarNode::fCost));
-        openQueue.offer(new AStarNode(start, 0, heuristic(start, end), null));
-        return openQueue;
+        PriorityQueue<AStarNode> open = new PriorityQueue<>(Comparator.comparingInt(AStarNode::fCost));
+        open.offer(new AStarNode(start, 0, heuristic(start, end), null));
+        return open;
     }
 
     private int[][] initializeGCost(int height, int width, Coordinate start) {
@@ -50,36 +50,36 @@ public class AStarMazeSolver implements Solver {
     }
 
     private boolean processCurrentsAStarNode(Maze maze, AStarNode current,
-                                            Coordinate end, PriorityQueue<AStarNode> openQueue,
-                                            int[][] gCost, boolean[][] closedSet) {
+                                            Coordinate end, PriorityQueue<AStarNode> open,
+                                            int[][] gCost, boolean[][] closed) {
         Coordinate currentCoordinate = current.coordinate();
         if (currentCoordinate.equals(end)) {
             return true;
         }
-        closedSet[currentCoordinate.row()][currentCoordinate.col()] = true;
+        closed[currentCoordinate.row()][currentCoordinate.col()] = true;
         for (int[] direction : DIRECTIONS) {
-            processAStarNeighbor(maze, current, direction, end, openQueue, gCost, closedSet);
+            processAStarNeighbor(maze, current, direction, end, open, gCost, closed);
         }
 
         return false;
     }
 
     private void processAStarNeighbor(Maze maze, AStarNode current,
-                                    int[] direction, Coordinate end, PriorityQueue<AStarNode> openQueue,
-                                    int[][] gCost, boolean[][] closedSet) {
+                                    int[] direction, Coordinate end, PriorityQueue<AStarNode> open,
+                                    int[][] gCost, boolean[][] closed) {
         int newRow = current.coordinate().row() + direction[DIRECTIONS_LEFT_INDEX];
         int newCol = current.coordinate().col() + direction[DIRECTIONS_RIGHT_INDEX];
 
         if (isValidRowCol(newRow, newCol, maze.height(), maze.width())) {
             Cell neighbor = maze.getGridElement(newRow, newCol);
-            if (neighbor.cost() == Integer.MAX_VALUE || closedSet[newRow][newCol]) {
+            if (neighbor.cost() == Integer.MAX_VALUE || closed[newRow][newCol]) {
                 return;
             }
             int tentativeGCost = current.gCost() + neighbor.cost();
             if (tentativeGCost < gCost[newRow][newCol]) {
                 gCost[newRow][newCol] = tentativeGCost;
                 int fCost = tentativeGCost + heuristic(new Coordinate(newRow, newCol), end);
-                openQueue.offer(new AStarNode(new Coordinate(newRow, newCol), tentativeGCost, fCost, current));
+                open.offer(new AStarNode(new Coordinate(newRow, newCol), tentativeGCost, fCost, current));
             }
         }
     }
