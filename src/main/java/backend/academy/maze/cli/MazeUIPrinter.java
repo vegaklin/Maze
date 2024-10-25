@@ -37,6 +37,10 @@ public class MazeUIPrinter {
         out.println("Enter the width of the maze (greater than 1):");
     }
 
+    public static void printMazeWithNumbers(PrintStream out, String render) {
+        out.print(render);
+    }
+
     public static void printMazePath(PrintStream out, Maze maze, List<Coordinate> mazePath, Renderer renderer) {
         if (mazePath.isEmpty()) {
             out.println("No path found between the selected points.");

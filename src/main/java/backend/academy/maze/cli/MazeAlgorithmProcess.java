@@ -35,14 +35,14 @@ public class MazeAlgorithmProcess {
     private <T, U> T chooseAlgorithm(Scanner scanner, PrintStream out,
                                     Function<Integer, U> typeConverter, U defaultType,
                                     Function<U, T> algorithmFactory) {
-        return chooseOption(scanner, out,
+        return chooseAlgorithmOption(scanner, out,
             number -> number == 1 || number == 2,
             defaultType,
             typeConverter,
             algorithmFactory);
     }
 
-    private <T, U> T chooseOption(Scanner scanner, PrintStream out, Predicate<Integer> validator,
+    private <T, U> T chooseAlgorithmOption(Scanner scanner, PrintStream out, Predicate<Integer> validator,
         U defaultValue,
         Function<Integer, U> converter,
         Function<U, T> factory) {

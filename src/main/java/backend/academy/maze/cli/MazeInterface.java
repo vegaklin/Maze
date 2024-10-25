@@ -21,31 +21,62 @@ public class MazeInterface {
     }
 
     public void start(Scanner scanner, PrintStream out) {
-        MazeDetailsProcess mazeDetailsProcess = new MazeDetailsProcess();
-        MazeAlgorithmProcess mazeAlgorithmProcess = new MazeAlgorithmProcess();
-
         printTitle(out);
 
-        Generator generator = mazeAlgorithmProcess.generateAlgorithmChoosing(scanner, out);
+        Generator generator = chooseGeneratorAlgorithm(scanner, out);
+        Maze maze = generateMaze(generator, scanner, out);
+        Maze improvedMaze = improveMaze(maze);
+
+        Coordinate start = getStartCoordinate(improvedMaze, scanner, out);
+        Coordinate end = getEndCoordinate(improvedMaze, scanner, out);
+        addStartAndEnd(improvedMaze, start, end);
+
+        Solver solver = chooseSolverAlgorithm(scanner, out);
+        List<Coordinate> mazePath = solveMaze(solver, improvedMaze, start, end);
+        printMazePath(out, improvedMaze, mazePath, renderer);
+    }
+
+    private Generator chooseGeneratorAlgorithm(Scanner scanner, PrintStream out) {
+        MazeAlgorithmProcess mazeAlgorithmProcess = new MazeAlgorithmProcess();
+        return mazeAlgorithmProcess.generateAlgorithmChoosing(scanner, out);
+    }
+
+    private Maze generateMaze(Generator generator, Scanner scanner, PrintStream out) {
+        MazeDetailsProcess mazeDetailsProcess = new MazeDetailsProcess();
         int height = mazeDetailsProcess.inputHeight(scanner, out);
         int width = mazeDetailsProcess.inputWidth(scanner, out);
+        return generator.generate(height, width);
+    }
 
-        Maze maze = generator.generate(height, width);
+    private Maze improveMaze(Maze maze) {
         MazeAdditionalPath moder = new MazeAdditionalPath();
-        Maze manyPatsMaze = moder.addingPathsInMaze(maze);
-        Maze differentSurfaceMaze = addDifferentSurfacesInMaze(manyPatsMaze);
+        Maze mazeWithPaths = moder.addingPathsInMaze(maze);
+        return addDifferentSurfacesInMaze(mazeWithPaths);
+    }
 
-        int start = mazeDetailsProcess.inputMazeStartEndPoint(scanner, out,
-            differentSurfaceMaze, height, renderer, true);
-        int end = mazeDetailsProcess.inputMazeStartEndPoint(scanner, out,
-            differentSurfaceMaze, height, renderer, false);
-        Coordinate startCoordinate = new Coordinate(start, 0);
-        Coordinate endCoordinate = new Coordinate(end, width - 1);
-        differentSurfaceMaze.addPassageToGrid(startCoordinate.row(), startCoordinate.col());
-        differentSurfaceMaze.addPassageToGrid(endCoordinate.row(), endCoordinate.col());
+    private Coordinate getStartCoordinate(Maze maze, Scanner scanner, PrintStream out) {
+        MazeDetailsProcess mazeDetailsProcess = new MazeDetailsProcess();
+        int start = mazeDetailsProcess.inputMazeStartEndPoint(scanner, out, maze, maze.height(), renderer, true);
+        return new Coordinate(start, 0);
+    }
 
-        Solver solver = mazeAlgorithmProcess.solveAlgorithmChoosing(scanner, out);
-        List<Coordinate> mazePath = solver.solve(differentSurfaceMaze, startCoordinate, endCoordinate);
-        printMazePath(out, differentSurfaceMaze, mazePath, renderer);
+    private Coordinate getEndCoordinate(Maze maze, Scanner scanner, PrintStream out) {
+        MazeDetailsProcess mazeDetailsProcess = new MazeDetailsProcess();
+        int end = mazeDetailsProcess.inputMazeStartEndPoint(scanner, out, maze, maze.height(), renderer, false);
+        return new Coordinate(end, maze.width() - 1);
+    }
+
+    private void addStartAndEnd(Maze maze, Coordinate start, Coordinate end) {
+        maze.addPassageToGrid(start.row(), start.col());
+        maze.addPassageToGrid(end.row(), end.col());
+    }
+
+    private Solver chooseSolverAlgorithm(Scanner scanner, PrintStream out) {
+        MazeAlgorithmProcess mazeAlgorithmProcess = new MazeAlgorithmProcess();
+        return mazeAlgorithmProcess.solveAlgorithmChoosing(scanner, out);
+    }
+
+    private List<Coordinate> solveMaze(Solver solver, Maze maze, Coordinate start, Coordinate end) {
+        return solver.solve(maze, start, end);
     }
 }

@@ -12,7 +12,7 @@ public class MazeValidator {
     }
 
     public static void isCorrectRowCol(int row, int col, int width, int height) {
-        if (row < 0 || row >= width || col < 0 || col >= height) {
+        if (row < 0 || row >= height || col < 0 || col >= width) {
             throw new IllegalArgumentException("Out of range in Maze.");
         }
     }
