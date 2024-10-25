@@ -17,7 +17,7 @@ public class MazeUIPrinter {
         out.print("""
             Choose an algorithm for generating an algorithm:
             1. Kruskal's algorithm;
-            2. Prime's algorithm.
+            2. Prim's algorithm.
             """);
     }
 

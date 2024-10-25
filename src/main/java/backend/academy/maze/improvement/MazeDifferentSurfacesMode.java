@@ -9,6 +9,10 @@ import static backend.academy.maze.constant.MazeConstants.EAT_PROBABILITY;
 import static backend.academy.maze.constant.MazeConstants.SAND_PROBABILITY;
 import static backend.academy.maze.constant.MazeConstants.SWAMP_PROBABILITY;
 
+/**
+ * Utility class to add diverse surface types to passages in a maze.
+ * Each type influences maze traversal cost.
+ */
 @UtilityClass
 public class MazeDifferentSurfacesMode {
     private final SecureRandom random = new SecureRandom();
@@ -20,8 +24,8 @@ public class MazeDifferentSurfacesMode {
 
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
-                double randomValue = random.nextDouble();
                 if (newMaze.isPassageInGrid(row, col)) {
+                    double randomValue = random.nextDouble();
                     if (randomValue < SWAMP_PROBABILITY) {
                         newMaze.addModeToGrid(row, col, Type.SWAMP);
                     } else if (randomValue < SAND_PROBABILITY) {

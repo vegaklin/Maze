@@ -7,11 +7,6 @@ import java.util.List;
 
 public class ConsoleRenderer implements Renderer {
     @Override
-    public String render(Maze maze) {
-        return renderMaze(maze, null, false, false);
-    }
-
-    @Override
     public String render(Maze maze, List<Coordinate> path) {
         return renderMaze(maze, path, false, false);
     }

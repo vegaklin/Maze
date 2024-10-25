@@ -7,6 +7,13 @@ import java.util.Comparator;
 import java.util.List;
 import static backend.academy.maze.constant.MazeConstants.NUMBER_PATHS_ADD;
 
+/**
+ * The MazeAdditionalPath class is responsible for identifying and adding
+ * additional paths within a given maze structure by analyzing horizontal and
+ * vertical walls. Adding additional paths by inserting a Passage cell in the
+ * middle of a long wall. It starts with the longest and
+ * occurs Math.max(height, width) / NUMBER_PATHS_ADD times.
+ */
 public class MazeAdditionalPath {
     private final List<Wall> walls;
 
