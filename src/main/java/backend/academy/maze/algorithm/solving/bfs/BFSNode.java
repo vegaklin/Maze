@@ -4,7 +4,8 @@ import backend.academy.maze.maze.Coordinate;
 
 /**
  * Represents a node in the BFS search process for pathfinding within a maze.
- * Each BFSNode holds a coordinate, the total cost to reach this node from the start, and a reference to the previous node in the path.
+ * Each BFSNode holds a coordinate, the total cost to reach this node from the start,
+ * and a reference to the previous node in the path.
  * Used for tracing the path once the end coordinate is reached.
  *
  * @param coordinate  The coordinate location of this node within the maze.

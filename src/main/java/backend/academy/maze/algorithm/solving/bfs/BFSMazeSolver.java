@@ -27,7 +27,8 @@ public class BFSMazeSolver implements Solver {
      * @param maze   The maze object containing grid information.
      * @param start  The starting coordinate for the search.
      * @param end    The target coordinate to reach.
-     * @return A list of coordinates representing the shortest path from start to end, or an empty list if no path is found.
+     * @return A list of coordinates representing the shortest path
+     * from start to end, or an empty list if no path is found.
      */
     @Override
     public List<Coordinate> solve(Maze maze, Coordinate start, Coordinate end) {
@@ -76,7 +77,8 @@ public class BFSMazeSolver implements Solver {
     }
 
     /**
-     * Processes the current BFS node by evaluating its neighbors. If the end coordinate is reached, the search is complete.
+     * Processes the current BFS node by evaluating its neighbors.
+     * If the end coordinate is reached, the search is complete.
      *
      * @param maze    The maze object containing the grid information.
      * @param current The current BFS node being processed.

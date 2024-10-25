@@ -4,13 +4,21 @@
 Проект содержит следующие ключевые пакеты:
 
 ```backend.academy.maze.algorithm.generation``` — алгоритмы генерации лабиринта (Краскал и Прим).
+
 ```backend.academy.maze.algorithm.solving``` — алгоритмы поиска пути (A* и BFS).
+
 ```backend.academy.maze.maze``` — классы лабиринта, координатов и ячеек.
+
 ```backend.academy.maze.improvement``` — классы для добавления дополнительных путей и разных поверхностей.
+
 ```backend.academy.maze.constant``` — настройки и константы для генерации лабиринта.
+
 ```backend.academy.maze.factory``` — фабрики для создания объектов генераторов, способов решения и интерфейса игры.
+
 ```backend.academy.maze.render``` — классы для визуализации лабиринта.
+
 ```backend.academy.maze.validation``` — классы для валидации данных.
+
 ```backend.academy.maze.cli``` — консольный интерфейс и компоненты взаимодействия с пользователем.
 
 ## Взаимодействие с игрой

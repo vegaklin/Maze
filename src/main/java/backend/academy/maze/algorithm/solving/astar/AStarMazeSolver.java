@@ -60,7 +60,8 @@ public class AStarMazeSolver implements Solver {
     }
 
     /**
-     * Sets up the initial G-cost (movement cost) grid, with all cells initialized to maximum value except the start cell.
+     * Sets up the initial G-cost (movement cost) grid, with all
+     * cells initialized to maximum value except the start cell.
      *
      * @param height The maze height.
      * @param width The maze width.
