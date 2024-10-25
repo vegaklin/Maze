@@ -8,19 +8,11 @@ import lombok.Getter;
  * It can be used to describe possible passages between cells.
  */
 @Getter public class Edge {
-    /**
-     * The starting coordinate of the edge
-     */
+    /** The starting coordinate of the edge */
     private final Coordinate from;
-
-    /**
-     * The ending coordinate of the edge
-     */
+    /** The ending coordinate of the edge */
     private final Coordinate to;
-
-    /**
-     * The weight of the edge (used in weighted mazes)
-     */
+    /** The weight of the edge (used in weighted mazes) */
     private final int weight;
 
     /**

@@ -5,14 +5,9 @@ package backend.academy.maze.algorithm.generation.kruskal;
  * It is used to track and manage which maze cells are connected to prevent loops in the maze generation.
  */
 public class DisjointSet {
-    /**
-     * Array representing the parent of each set
-     */
+    /** Array representing the parent of each set */
     private final int[] parent;
-
-    /**
-     * Array representing the rank of each set (to optimize union operation)
-     */
+    /** Array representing the rank of each set (to optimize union operation) */
     private final int[] rank;
 
     /**

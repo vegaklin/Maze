@@ -1,4 +1,4 @@
 package backend.academy.maze;
 
-public class ConsoleRendererTest {
+public class MazeGameFactoryTest {
 }
