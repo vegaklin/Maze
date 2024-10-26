@@ -2,7 +2,6 @@ package backend.academy.maze;
 
 import backend.academy.maze.algorithm.solving.Solver;
 import backend.academy.maze.algorithm.solving.astar.AStarMazeSolver;
-import backend.academy.maze.algorithm.solving.bfs.BFSMazeSolver;
 import backend.academy.maze.maze.Coordinate;
 import backend.academy.maze.maze.Maze;
 import backend.academy.maze.maze.Type;

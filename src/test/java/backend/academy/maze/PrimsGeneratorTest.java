@@ -1,7 +1,6 @@
 package backend.academy.maze;
 
 import backend.academy.maze.algorithm.generation.Generator;
-import backend.academy.maze.algorithm.generation.kruskal.KruskalsGenerator;
 import backend.academy.maze.algorithm.generation.prim.PrimsGenerator;
 import backend.academy.maze.maze.Maze;
 import org.junit.jupiter.api.DisplayName;
