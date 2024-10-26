@@ -122,4 +122,32 @@ public class MazeInterfaceTest {
         verify(renderer).renderWithNumberOfRowsFront(maze);
         assertTrue(outputStream.toString().contains("No path found between the selected points."));
     }
+
+    @Test
+    @DisplayName("Correct output of a interface output without mock")
+    void checkMazeInterfaceWithoutMock() {
+        String input = "1\n7\n10\n1\n5\n1\n";
+        Scanner scanner = new Scanner(input);
+        PrintStream out = new PrintStream(outputStream);
+        MazeProcessing realMazeProcessing = new MazeProcessing();
+        mazeInterface = new MazeInterface(renderer, realMazeProcessing);
+
+        mazeInterface.start(scanner, out);
+
+        assertTrue(outputStream.toString().contains("""
+            Choose an algorithm for generating an algorithm:
+            1. Kruskal's algorithm;
+            2. Prim's algorithm.
+            """));
+        assertTrue(outputStream.toString().contains("Enter the height of the maze (greater than 1):"));
+        assertTrue(outputStream.toString().contains("Enter the width of the maze (greater than 1):"));
+        assertTrue(outputStream.toString().contains("Enter the start line number from the left:"));
+        assertTrue(outputStream.toString().contains("Enter the finish line number from the right:"));
+        assertTrue(outputStream.toString().contains("""
+            Choose an algorithm for solving an algorithm:
+            1. A* (A-star) algorithm;
+            2. BFS algorithm.
+            """));
+        assertTrue(outputStream.toString().contains("██████████████████████"), "Wall length is 10");
+    }
 }
