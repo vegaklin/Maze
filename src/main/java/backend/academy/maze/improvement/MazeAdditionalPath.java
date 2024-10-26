@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import static backend.academy.maze.constant.MazeConstants.FIXED_COORDINATE_INCREMENT;
 import static backend.academy.maze.constant.MazeConstants.NUMBER_PATHS_ADD;
 
 /**
@@ -35,10 +36,9 @@ public class MazeAdditionalPath {
 
     private void processWalls(Maze maze, int height, int width, boolean isHorizontal) {
         int limit = isHorizontal ? height : width;
-        int fixedCoordinateIncrement = 2;
-        for (int fixedCoordinate = fixedCoordinateIncrement;
+        for (int fixedCoordinate = FIXED_COORDINATE_INCREMENT;
              fixedCoordinate < limit - 2;
-             fixedCoordinate += fixedCoordinateIncrement) {
+             fixedCoordinate += FIXED_COORDINATE_INCREMENT) {
             int variableCoordinate = 1;
             while (isPassage(maze, fixedCoordinate, variableCoordinate, isHorizontal)
                 && variableCoordinate < (isHorizontal ? width : height) - 1) {
