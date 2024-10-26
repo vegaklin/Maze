@@ -120,4 +120,67 @@ public class MazeTestUtils {
         maze.addPassageToGrid(5, 5);
         maze.addPassageToGrid(5, 7);
     }
+
+    public static void fillBigDefaultMaze(Maze maze) {
+        /*
+            ████████████████████
+            ██                ██
+            ██  ████████████████
+            ██  ██            ██
+            ██  ██  ████████████
+            ██  ██            ██
+            ██  ██  ██        ██
+            ██  ██  ██  ██    ██
+            ██      ██  ██    ██
+            ████████████████████
+         */
+        maze.addPassageToGrid(1, 1);
+        maze.addPassageToGrid(1, 2);
+        maze.addPassageToGrid(1, 3);
+        maze.addPassageToGrid(1, 4);
+        maze.addPassageToGrid(1, 5);
+        maze.addPassageToGrid(1, 7);
+        maze.addPassageToGrid(1, 8);
+
+        maze.addPassageToGrid(2, 1);
+
+        maze.addPassageToGrid(3, 1);
+        maze.addPassageToGrid(3, 3);
+        maze.addPassageToGrid(3, 4);
+        maze.addPassageToGrid(3, 5);
+        maze.addPassageToGrid(3, 6);
+        maze.addPassageToGrid(3, 7);
+        maze.addPassageToGrid(3, 8);
+
+        maze.addPassageToGrid(4, 1);
+        maze.addPassageToGrid(4, 3);
+
+        maze.addPassageToGrid(5, 1);
+        maze.addPassageToGrid(5, 3);
+        maze.addPassageToGrid(5, 4);
+        maze.addPassageToGrid(5, 5);
+        maze.addPassageToGrid(5, 6);
+        maze.addPassageToGrid(5, 7);
+        maze.addPassageToGrid(5, 8);
+
+        maze.addPassageToGrid(6, 1);
+        maze.addPassageToGrid(6, 3);
+        maze.addPassageToGrid(6, 5);
+        maze.addPassageToGrid(6, 6);
+        maze.addPassageToGrid(6, 7);
+        maze.addPassageToGrid(6, 8);
+
+        maze.addPassageToGrid(7, 1);
+        maze.addPassageToGrid(7, 3);
+        maze.addPassageToGrid(7, 5);
+        maze.addPassageToGrid(7, 7);
+        maze.addPassageToGrid(7, 8);
+
+        maze.addPassageToGrid(8, 1);
+        maze.addPassageToGrid(8, 2);
+        maze.addPassageToGrid(8, 3);
+        maze.addPassageToGrid(8, 5);
+        maze.addPassageToGrid(8, 7);
+        maze.addPassageToGrid(8, 8);
+    }
 }
