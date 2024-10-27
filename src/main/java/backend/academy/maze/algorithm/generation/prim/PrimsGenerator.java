@@ -18,6 +18,7 @@ import static backend.academy.maze.validation.MazeValidator.validateMazeSize;
  * adds the shortest available edge connecting a new cell to the tree.
  */
 public class PrimsGenerator implements Generator {
+
     /**
      * Random number generator for generating random weights for edges.
      * SecureRandom is used to ensure unpredictable randomness.

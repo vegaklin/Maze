@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MazeTestUtils {
+
     public static List<Coordinate> upPathOneWallMaze() {
         List<Coordinate> expectedPath = new ArrayList<>();
         expectedPath.add(new Coordinate(2, 0));

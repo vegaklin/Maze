@@ -27,9 +27,14 @@ public class MazeDetailsProcessTest {
     @Test
     @DisplayName("Return of the default height")
     void checkDefaultHeight() {
+        // given
+
         String input = "0\n1\n1\n1\n1\n0\ng\n-1\n0\ny\n";
+
         Scanner scanner = new Scanner(input);
         PrintStream out = new PrintStream(outputStream);
+
+        // when
 
         int height = mazeDetailsProcess.inputHeight(scanner, out);
 
@@ -40,9 +45,14 @@ public class MazeDetailsProcessTest {
     @Test
     @DisplayName("Return of the input height")
     void checkInputHeight() {
+        // given
+
         String input = "15\n";
+
         Scanner scanner = new Scanner(input);
         PrintStream out = new PrintStream(outputStream);
+
+        // when
 
         int height = mazeDetailsProcess.inputHeight(scanner, out);
 
@@ -52,9 +62,14 @@ public class MazeDetailsProcessTest {
     @Test
     @DisplayName("Return of the default width")
     void checkDefaultWidth() {
+        // given
+
         String input = "0\n1\n1\n1\n1\n0\ng\n-1\n0\ny\n";
+
         Scanner scanner = new Scanner(input);
         PrintStream out = new PrintStream(outputStream);
+
+        // when
 
         int height = mazeDetailsProcess.inputWidth(scanner, out);
 
@@ -65,9 +80,14 @@ public class MazeDetailsProcessTest {
     @Test
     @DisplayName("Return of the input width")
     void checkInputWidth() {
+        // given
+
         String input = "15\n";
+
         Scanner scanner = new Scanner(input);
         PrintStream out = new PrintStream(outputStream);
+
+        // when
 
         int height = mazeDetailsProcess.inputWidth(scanner, out);
 
@@ -77,11 +97,18 @@ public class MazeDetailsProcessTest {
     @Test
     @DisplayName("Return of the default start")
     void checkDefaultStart() {
+        // given
+
         String input = "-1\n14\n15\n-7\nii\n0\n0\n-1\n10\ny\n";
+
         Scanner scanner = new Scanner(input);
         PrintStream out = new PrintStream(outputStream);
+
         Maze maze = new Maze(10, 10);
+
         Renderer renderer = new ConsoleRenderer();
+
+        // when
 
         int pointStart = mazeDetailsProcess.inputMazeStartEndPoint(scanner, out, maze, 10, renderer, true);
 
@@ -92,13 +119,22 @@ public class MazeDetailsProcessTest {
     @Test
     @DisplayName("Return of the input end")
     void checkInputEnd() {
+        // given
+
         String input = "5\n";
+
         Scanner scanner = new Scanner(input);
         PrintStream out = new PrintStream(outputStream);
+
         Maze maze = new Maze(10, 10);
+
         Renderer renderer = new ConsoleRenderer();
 
+        // when
+
         int pointEnd = mazeDetailsProcess.inputMazeStartEndPoint(scanner, out, maze, 10, renderer, false);
+
+        // then
 
         assertEquals(pointEnd, 5);
     }

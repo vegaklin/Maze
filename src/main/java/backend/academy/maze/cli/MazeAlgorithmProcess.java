@@ -16,6 +16,7 @@ import static backend.academy.maze.constant.MazeConstants.INVALID_INPUT_MESSAGE;
 import static backend.academy.maze.constant.MazeConstants.SELECTION_ATTEMPTS;
 
 public class MazeAlgorithmProcess {
+
     public Generator generateAlgorithmChoosing(Scanner scanner, PrintStream out) {
         printMessageGeneratorChoosing(out);
         return chooseAlgorithm(scanner, out,

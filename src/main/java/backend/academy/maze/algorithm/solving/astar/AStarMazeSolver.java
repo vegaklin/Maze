@@ -20,6 +20,7 @@ import static backend.academy.maze.validation.MazeValidator.isValidRowCol;
  * It computes the optimal path from a start to an end coordinate by minimizing the movement cost through cells.
  */
 public class AStarMazeSolver implements Solver {
+
     /**
      * Solves the maze by using the A* algorithm to find the shortest path from start to end coordinates.
      *

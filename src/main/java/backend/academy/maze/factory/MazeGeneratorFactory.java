@@ -7,6 +7,7 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class MazeGeneratorFactory {
+
     public static Generator createMazeGenerator(GeneratorType type) {
         return switch (type) {
             case KRUSKAL -> new KruskalsGenerator();

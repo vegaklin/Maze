@@ -13,6 +13,7 @@ import lombok.experimental.UtilityClass;
  */
 @UtilityClass
 public class PathEditor {
+
     /**
      * Constructs a list of coordinates representing the path by tracing backwards from the given node.
      * Uses reflection to access the coordinate and previous node fields of each node object.

@@ -8,6 +8,7 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class MazeGameFactory {
+
     public static MazeInterface createMazeGame() {
         Renderer renderer = new ConsoleRenderer();
         MazeProcessing mazeProcessing = new MazeProcessing();

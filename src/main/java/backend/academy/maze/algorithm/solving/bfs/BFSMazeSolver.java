@@ -21,6 +21,7 @@ import static backend.academy.maze.validation.MazeValidator.isValidRowCol;
  * Implements the Solver interface using the Breadth-First Search (BFS) algorithm to find the shortest path in a maze.
  */
 public class BFSMazeSolver implements Solver {
+
     /**
      * Solves the maze using BFS to find the shortest path from the start coordinate to the end coordinate.
      *

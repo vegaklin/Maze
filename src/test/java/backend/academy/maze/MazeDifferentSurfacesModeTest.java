@@ -11,15 +11,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MazeDifferentSurfacesModeTest {
+
     @Test
     @DisplayName("Correct addition of surfaces without changing walls")
     void checkCorrectAdditionOfSurface() {
+        // given
+
         int height = 7;
         int width = 9;
         Maze maze = new Maze(height, width);
         fillDefaultMaze(maze);
 
+        // when
+
         Maze mazeWithMode = addDifferentSurfacesInMaze(maze);
+
+        // then
 
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {

@@ -14,19 +14,22 @@ public class MazeAdditionalPathTest {
     MazeAdditionalPath mazeAdditionalPath;
 
     @BeforeEach
-    public void initEach(){
+    public void setUp() {
         mazeAdditionalPath = new MazeAdditionalPath();
     }
 
     @Test
     @DisplayName("Adding a path in a vertical wall in a small maze")
     void checkAddingPathInVerticalWallInSmallMaze() {
+        // given
+
         int height = 5;
         int width = 5;
         Maze maze = new Maze(height, width);
         oneWallMaze(maze);
         maze.addWallToGrid(1, 2);
         maze.addWallToGrid(3, 2);
+
         Maze expectedMaze = maze.deepCopy();
         expectedMaze.addPassageToGrid(3, 2);
         /*
@@ -37,7 +40,11 @@ public class MazeAdditionalPathTest {
             ██████████
          */
 
+        // when
+
         Maze actualMaze = mazeAdditionalPath.addingPathsInMaze(maze);
+
+        // then
 
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
@@ -49,12 +56,15 @@ public class MazeAdditionalPathTest {
     @Test
     @DisplayName("Adding a path in a horizontal wall in a small maze")
     void checkAddingPathInHorizontalWallInSmallMaze() {
+        // given
+
         int height = 5;
         int width = 5;
         Maze maze = new Maze(height, width);
         oneWallMaze(maze);
         maze.addWallToGrid(2, 1);
         maze.addWallToGrid(2, 3);
+
         Maze expectedMaze = maze.deepCopy();
         expectedMaze.addPassageToGrid(2, 3);
         /*
@@ -64,7 +74,12 @@ public class MazeAdditionalPathTest {
             ██      ██
             ██████████
          */
+
+        // when
+
         Maze actualMaze = mazeAdditionalPath.addingPathsInMaze(maze);
+
+        // then
 
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
@@ -76,11 +91,14 @@ public class MazeAdditionalPathTest {
     @Test
     @DisplayName("Adding a path in the longest (vertical) wall in a regular maze")
     void checkAddingPathInVerticalWallInDefaultMaze() {
+        // given
+
         int height = 7;
         int width = 9;
         Maze maze = new Maze(height, width);
         fillDefaultMaze(maze);
         maze.addWallToGrid(3, 6);
+
         Maze expectedMaze = maze.deepCopy();
         expectedMaze.addPassageToGrid(3, 6);
         /*
@@ -93,7 +111,11 @@ public class MazeAdditionalPathTest {
             ██████████████████
          */
 
+        // when
+
         Maze actualMaze = mazeAdditionalPath.addingPathsInMaze(maze);
+
+        // then
 
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
@@ -105,11 +127,14 @@ public class MazeAdditionalPathTest {
     @Test
     @DisplayName("Adding a path in the longest (horizontal) wall in a regular maze")
     void checkAddingPathInHorizontalWallInDefaultMaze() {
+        // given
+
         int height = 7;
         int width = 9;
         Maze maze = new Maze(height, width);
         fillDefaultMaze(maze);
         maze.addWallToGrid(4, 5);
+
         Maze expectedMaze = maze.deepCopy();
         expectedMaze.addPassageToGrid(4, 5);
         /*
@@ -122,7 +147,11 @@ public class MazeAdditionalPathTest {
             ██████████████████
          */
 
+        // when
+
         Maze actualMaze = mazeAdditionalPath.addingPathsInMaze(maze);
+
+        // then
 
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
@@ -134,10 +163,13 @@ public class MazeAdditionalPathTest {
     @Test
     @DisplayName("Adding 2 paths at a large size on the largest walls (vertical and horizontal)")
     void checkAddingMorePaths() {
+        // given
+
         int height = 10;
         int width = 10;
         Maze maze = new Maze(height, width);
         fillBigDefaultMaze(maze);
+
         Maze expectedMaze = maze.deepCopy();
         expectedMaze.addPassageToGrid(2, 5);
         expectedMaze.addPassageToGrid(5, 2);
@@ -154,7 +186,11 @@ public class MazeAdditionalPathTest {
             ████████████████████
          */
 
+        // when
+
         Maze actualMaze = mazeAdditionalPath.addingPathsInMaze(maze);
+
+        // then
 
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {

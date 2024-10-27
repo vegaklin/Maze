@@ -14,12 +14,17 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MazeTest {
+
     @Test
     @DisplayName("New Maze with walls")
     void checkNewMazeAllWalls() {
+        // given
+
         int height = 5;
         int width = 5;
         Maze maze = new Maze(height, width);
+
+        // when
 
         boolean allWalls = true;
         for (int row = 0; row < height; row++) {
@@ -31,15 +36,23 @@ public class MazeTest {
             }
         }
 
+        // then
+
         assertTrue(allWalls, "All cells should be initialized as walls");
     }
 
     @Test
     @DisplayName("Correctly add passage to maze")
     void checkAddPassageToGrid() {
+        // given
+
         Maze maze = new Maze(5, 5);
 
+        // when
+
         maze.addPassageToGrid(2, 2);
+
+        // then
 
         assertTrue(maze.isPassageInGrid(2, 2), "Cell should be a passage");
     }
@@ -47,9 +60,15 @@ public class MazeTest {
     @Test
     @DisplayName("Correctly add wall to maze")
     void checkAddWallToGrid() {
+        // given
+
         Maze maze = new Maze(5, 5);
 
+        // when
+
         maze.addWallToGrid(1, 1);
+
+        // then
 
         assertTrue(maze.isWallInGrid(1, 1), "Cell should be a wall");
     }
@@ -57,12 +76,18 @@ public class MazeTest {
     @Test
     @DisplayName("Correctly add custom type cell to maze")
     void checkAddModeToGrid() {
+        // given
+
         Maze maze = new Maze(5, 5);
+
+        // when
 
         maze.addModeToGrid(1, 1, Type.SWAMP);
         maze.addModeToGrid(2, 2, Type.SAND);
         maze.addModeToGrid(3, 3, Type.COIN);
         maze.addModeToGrid(0, 0, Type.EAT);
+
+        // then
 
         assertEquals(Type.SWAMP, maze.getGridElement(1, 1).type(), "Cell should be a swamp");
         assertEquals(maze.getGridElement(1, 1).cost(), SWAMP_COST, "Swamp should have a cost of SWAMP_COST");
@@ -77,7 +102,11 @@ public class MazeTest {
     @Test
     @DisplayName("Throw exception for invalid row and column access")
     void checkThrowIncorrectRowAndCol() {
+        // given  // when
+
         Maze maze = new Maze(5, 5);
+
+        // then
 
         assertThrows(IllegalArgumentException.class, () -> maze.getGridElement(-1, 2));
         assertThrows(IllegalArgumentException.class, () -> maze.getGridElement(2, -1));
@@ -87,11 +116,17 @@ public class MazeTest {
     @Test
     @DisplayName("Create deep copy of maze")
     void checkCorrectDeepCopy() {
+        // given
+
         Maze originalMaze = new Maze(5, 5);
         originalMaze.addPassageToGrid(2, 2);
 
+        // when
+
         Maze copiedMaze = originalMaze.deepCopy();
         originalMaze.addPassageToGrid(1, 1);
+
+        // then
 
         assertNotSame(originalMaze, copiedMaze, "Copied maze should be a new instance");
         assertEquals(originalMaze.width(), copiedMaze.width());

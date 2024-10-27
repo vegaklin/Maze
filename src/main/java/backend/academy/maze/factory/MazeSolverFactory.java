@@ -7,6 +7,7 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class MazeSolverFactory {
+
     public static Solver createMazeSolver(SolverType type) {
         return switch (type) {
             case A_STAR -> new AStarMazeSolver();

@@ -6,6 +6,7 @@ import backend.academy.maze.maze.Type;
 import java.util.List;
 
 public class ConsoleRenderer implements Renderer {
+
     @Override
     public String render(Maze maze, List<Coordinate> path) {
         return renderMaze(maze, path, false, false);

@@ -15,10 +15,16 @@ public class PrimsGeneratorTest {
     @Test
     @DisplayName("Generating a maze with the right dimensions")
     void checkGenerationCorrectWithCorrectSize() {
+        // given
+
         int height = 5;
         int width = 5;
 
+        // when
+
         Maze maze = generator.generate(height, width);
+
+        // then
 
         assertEquals(height, maze.height(), "Maze height should be correct");
         assertEquals(width, maze.width(), "Maze width should be correct");
@@ -27,10 +33,16 @@ public class PrimsGeneratorTest {
     @Test
     @DisplayName("Generating a maze with adjusted dimensions if even dimensions are specified")
     void checkEvenSizeWillBeOddAfterGeneration() {
+        // given
+
         int evenHeight = 4;
         int evenWidth = 6;
 
+        // when
+
         Maze maze = generator.generate(evenHeight, evenWidth);
+
+        // then
 
         assertEquals(5, maze.height(), "Maze height should be adjusted to 5");
         assertEquals(7, maze.width(), "Maze width should be adjusted to 7");
@@ -39,7 +51,11 @@ public class PrimsGeneratorTest {
     @Test
     @DisplayName("Have walls along all the edges of the maze")
     void checkWallsAlongMaze() {
+        // given // when
+
         Maze maze = generator.generate(5, 5);
+
+        // then
 
         for (int row = 0; row < maze.height(); row++) {
             assertTrue(maze.isWallInGrid(row, 0), "Left edge should be all walls");
@@ -54,6 +70,8 @@ public class PrimsGeneratorTest {
     @Test
     @DisplayName("Throw exception for too small maze size")
     void checkThrowInMazeSizeSmallerThanNull() {
+        // given // when // then
+
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             generator.generate(-4, -14);
             generator.generate(4, -14);
@@ -65,6 +83,8 @@ public class PrimsGeneratorTest {
     @Test
     @DisplayName("Throw exception of size 1")
     void checkThrowInMazeSizeOne() {
+        // given // when // then
+
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> generator.generate(1, 1));
         assertEquals("Incorrect maze size.", exception.getMessage());
     }

@@ -9,6 +9,7 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class MazeUIPrinter {
+
     public static void printTitle(PrintStream out) {
         out.println("=== MAZE ===");
     }

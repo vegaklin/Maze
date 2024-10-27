@@ -29,11 +29,18 @@ public class MazeAlgorithmProcessTest {
     @Test
     @DisplayName("Return of the default generator")
     void checkDefaultGenerator() {
+        // given
+
         String input = "0\ne\ne\n-1\n3\n12\ng\n-1\n0\ny\n";
+
         Scanner scanner = new Scanner(input);
         PrintStream out = new PrintStream(outputStream);
 
+        // when
+
         Generator generator = mazeAlgorithmProcess.generateAlgorithmChoosing(scanner, out);
+
+        // then
 
         assertInstanceOf(KruskalsGenerator.class, generator);
         assertTrue(outputStream.toString().contains(INVALID_INPUT_MESSAGE));
@@ -42,11 +49,18 @@ public class MazeAlgorithmProcessTest {
     @Test
     @DisplayName("Return of the Prims Generator")
     void checkPrimsGenerator() {
+        // given
+
         String input = "2\n";
+
         Scanner scanner = new Scanner(input);
         PrintStream out = new PrintStream(outputStream);
 
+        // when
+
         Generator generator = mazeAlgorithmProcess.generateAlgorithmChoosing(scanner, out);
+
+        // then
 
         assertInstanceOf(PrimsGenerator.class, generator);
     }
@@ -54,11 +68,18 @@ public class MazeAlgorithmProcessTest {
     @Test
     @DisplayName("Return of the Kruskals Generator")
     void checkKruskalsGenerator() {
+        // given
+
         String input = "1\n";
+
         Scanner scanner = new Scanner(input);
         PrintStream out = new PrintStream(outputStream);
 
+        // when
+
         Generator generator = mazeAlgorithmProcess.generateAlgorithmChoosing(scanner, out);
+
+        // then
 
         assertInstanceOf(KruskalsGenerator.class, generator);
     }
@@ -66,11 +87,18 @@ public class MazeAlgorithmProcessTest {
     @Test
     @DisplayName("Return of the default solver")
     void checkDefaultSolver() {
+        // given
+
         String input = "-1\ne\ne\n-1\n3\n12\ng\n-1\n0\ny\n";
+
         Scanner scanner = new Scanner(input);
         PrintStream out = new PrintStream(outputStream);
 
+        // when
+
         Solver solver = mazeAlgorithmProcess.solveAlgorithmChoosing(scanner, out);
+
+        // then
 
         assertInstanceOf(BFSMazeSolver.class, solver);
         assertTrue(outputStream.toString().contains(INVALID_INPUT_MESSAGE));
@@ -79,11 +107,18 @@ public class MazeAlgorithmProcessTest {
     @Test
     @DisplayName("Return of the BFS Maze Solver")
     void checkBFSMazeSolver() {
+        // given
+
         String input = "2\n";
+
         Scanner scanner = new Scanner(input);
         PrintStream out = new PrintStream(outputStream);
 
+        // when
+
         Solver solver = mazeAlgorithmProcess.solveAlgorithmChoosing(scanner, out);
+
+        // then
 
         assertInstanceOf(BFSMazeSolver.class, solver);
     }
@@ -91,11 +126,18 @@ public class MazeAlgorithmProcessTest {
     @Test
     @DisplayName("Return of the A Star MazeSolver")
     void checkAStarMazeSolver() {
+        // given
+
         String input = "1\n";
+
         Scanner scanner = new Scanner(input);
         PrintStream out = new PrintStream(outputStream);
 
+        // when
+
         Solver solver = mazeAlgorithmProcess.solveAlgorithmChoosing(scanner, out);
+
+        // then
 
         assertInstanceOf(AStarMazeSolver.class, solver);
     }

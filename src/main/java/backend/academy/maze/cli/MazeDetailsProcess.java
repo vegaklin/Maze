@@ -15,6 +15,7 @@ import static backend.academy.maze.constant.MazeConstants.SELECTION_ATTEMPTS;
 import static backend.academy.maze.validation.MazeValidator.validateMazeSize;
 
 public class MazeDetailsProcess {
+
     public int inputHeight(Scanner scanner, PrintStream out) {
         printMessageHeightChoosing(out);
         return validateMazeSize(inputMazeSize(scanner, out));

@@ -49,23 +49,34 @@ public class MazeInterfaceTest {
     @Test
     @DisplayName("Correct output of a matrix with a path")
     void checkCorrectMazeOutput() {
+        // given
+
         String input = "1\n7\n9\n3\n5\n1\n";
+
         Scanner scanner = new Scanner(input);
         PrintStream out = new PrintStream(outputStream);
+
         Maze maze = new Maze(7, 9);
         fillDefaultMaze(maze);
         maze.addWallToGrid(3, 0);
         maze.addWallToGrid(5, 8);
+
         List<Coordinate> expectedPath = defaultMazePath();
+
         when(mazeProcessing.generateMaze(any(Generator.class), any(Scanner.class), any(PrintStream.class))).thenReturn(maze);
         when(mazeProcessing.improveMaze(any(Maze.class))).thenReturn(maze);
         when(mazeProcessing.solveMaze(any(Solver.class), any(Maze.class), any(Coordinate.class), any(Coordinate.class))).thenReturn(expectedPath);
 
+        // when
+
         mazeInterface.start(scanner, out);
+
+        // then
 
         verify(renderer).renderWithNumberOfRowsBack(maze);
         verify(renderer).renderWithNumberOfRowsFront(maze);
         verify(renderer).render(maze, expectedPath);
+
         assertTrue(outputStream.toString().contains("""
             ██████████████████
             ██          ██  ██1
@@ -98,36 +109,55 @@ public class MazeInterfaceTest {
     @Test
     @DisplayName("Message output if there is no path")
     void checkNotPathOutput() {
+        // given
+
         String input = "1\n7\n10\n3\n5\n1\n";
+
         Scanner scanner = new Scanner(input);
         PrintStream out = new PrintStream(outputStream);
+
         Maze maze = new Maze(7, 9);
         fillDefaultMaze(maze);
         maze.addWallToGrid(3, 0);
         maze.addWallToGrid(5, 8);
         maze.addWallToGrid(3, 6);
+
         List<Coordinate> expectedPath = new ArrayList<>();
+
         when(mazeProcessing.generateMaze(any(Generator.class), any(Scanner.class), any(PrintStream.class))).thenReturn(maze);
         when(mazeProcessing.improveMaze(any(Maze.class))).thenReturn(maze);
         when(mazeProcessing.solveMaze(any(Solver.class), any(Maze.class), any(Coordinate.class), any(Coordinate.class))).thenReturn(expectedPath);
 
+        // when
+
         mazeInterface.start(scanner, out);
+
+        // then
 
         verify(renderer).renderWithNumberOfRowsBack(maze);
         verify(renderer).renderWithNumberOfRowsFront(maze);
+
         assertTrue(outputStream.toString().contains("No path found between the selected points."));
     }
 
     @Test
     @DisplayName("Correct output of a interface output without mock")
     void checkMazeInterfaceWithoutMock() {
+        // given
+
         String input = "1\n7\n10\n1\n5\n1\n";
+
         Scanner scanner = new Scanner(input);
         PrintStream out = new PrintStream(outputStream);
+
         MazeProcessing realMazeProcessing = new MazeProcessing();
         mazeInterface = new MazeInterface(renderer, realMazeProcessing);
 
+        // when
+
         mazeInterface.start(scanner, out);
+
+        // then
 
         assertTrue(outputStream.toString().contains("""
             Choose an algorithm for generating an algorithm:
