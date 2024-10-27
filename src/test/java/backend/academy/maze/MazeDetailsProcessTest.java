@@ -1,15 +1,14 @@
 package backend.academy.maze;
 
 import backend.academy.maze.cli.MazeDetailsProcess;
-import backend.academy.maze.maze.Maze;
-import backend.academy.maze.render.ConsoleRenderer;
-import backend.academy.maze.render.Renderer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.Scanner;
+import java.nio.charset.StandardCharsets;
 import static backend.academy.maze.constant.MazeConstants.DEFAULT_MAZE_SIZE;
 import static backend.academy.maze.constant.MazeConstants.INVALID_INPUT_MESSAGE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -29,14 +28,14 @@ public class MazeDetailsProcessTest {
     void checkDefaultHeight() {
         // given
 
-        String input = "0\n1\n1\n1\n1\n0\ng\n-1\n0\ny\n";
+        String inputText = "0\n1\n1\n1\n1\n0\ng\n-1\n0\ny\n";
 
-        Scanner scanner = new Scanner(input);
+        InputStream input = new ByteArrayInputStream(inputText.getBytes(StandardCharsets.UTF_8));
         PrintStream out = new PrintStream(outputStream);
 
         // when
 
-        int height = mazeDetailsProcess.inputHeight(scanner, out);
+        int height = mazeDetailsProcess.inputHeight(input, out);
 
         assertEquals(height, DEFAULT_MAZE_SIZE);
         assertTrue(outputStream.toString().contains(INVALID_INPUT_MESSAGE));
@@ -47,14 +46,14 @@ public class MazeDetailsProcessTest {
     void checkInputHeight() {
         // given
 
-        String input = "15\n";
+        String inputText = "15\n";
 
-        Scanner scanner = new Scanner(input);
+        InputStream input = new ByteArrayInputStream(inputText.getBytes(StandardCharsets.UTF_8));
         PrintStream out = new PrintStream(outputStream);
 
         // when
 
-        int height = mazeDetailsProcess.inputHeight(scanner, out);
+        int height = mazeDetailsProcess.inputHeight(input, out);
 
         assertEquals(height, 15);
     }
@@ -64,14 +63,14 @@ public class MazeDetailsProcessTest {
     void checkDefaultWidth() {
         // given
 
-        String input = "0\n1\n1\n1\n1\n0\ng\n-1\n0\ny\n";
+        String inputText = "0\n1\n1\n1\n1\n0\ng\n-1\n0\ny\n";
 
-        Scanner scanner = new Scanner(input);
+        InputStream input = new ByteArrayInputStream(inputText.getBytes(StandardCharsets.UTF_8));
         PrintStream out = new PrintStream(outputStream);
 
         // when
 
-        int height = mazeDetailsProcess.inputWidth(scanner, out);
+        int height = mazeDetailsProcess.inputWidth(input, out);
 
         assertEquals(height, DEFAULT_MAZE_SIZE);
         assertTrue(outputStream.toString().contains(INVALID_INPUT_MESSAGE));
@@ -82,14 +81,14 @@ public class MazeDetailsProcessTest {
     void checkInputWidth() {
         // given
 
-        String input = "15\n";
+        String inputText = "15\n";
 
-        Scanner scanner = new Scanner(input);
+        InputStream input = new ByteArrayInputStream(inputText.getBytes(StandardCharsets.UTF_8));
         PrintStream out = new PrintStream(outputStream);
 
         // when
 
-        int height = mazeDetailsProcess.inputWidth(scanner, out);
+        int height = mazeDetailsProcess.inputWidth(input, out);
 
         assertEquals(height, 15);
     }
@@ -99,18 +98,14 @@ public class MazeDetailsProcessTest {
     void checkDefaultStart() {
         // given
 
-        String input = "-1\n14\n15\n-7\nii\n0\n0\n-1\n10\ny\n";
+        String inputText = "-1\n14\n15\n-7\nii\n0\n0\n-1\n10\ny\n";
 
-        Scanner scanner = new Scanner(input);
+        InputStream input = new ByteArrayInputStream(inputText.getBytes(StandardCharsets.UTF_8));
         PrintStream out = new PrintStream(outputStream);
-
-        Maze maze = new Maze(10, 10);
-
-        Renderer renderer = new ConsoleRenderer();
 
         // when
 
-        int pointStart = mazeDetailsProcess.inputMazeStartEndPoint(scanner, out, maze, 10, renderer, true);
+        int pointStart = mazeDetailsProcess.inputMazeStartEndPoint(input, out, 10, true);
 
         assertEquals(pointStart, 1);
         assertTrue(outputStream.toString().contains(INVALID_INPUT_MESSAGE));
@@ -121,18 +116,14 @@ public class MazeDetailsProcessTest {
     void checkInputEnd() {
         // given
 
-        String input = "5\n";
+        String inputText = "5\n";
 
-        Scanner scanner = new Scanner(input);
+        InputStream input = new ByteArrayInputStream(inputText.getBytes(StandardCharsets.UTF_8));
         PrintStream out = new PrintStream(outputStream);
-
-        Maze maze = new Maze(10, 10);
-
-        Renderer renderer = new ConsoleRenderer();
 
         // when
 
-        int pointEnd = mazeDetailsProcess.inputMazeStartEndPoint(scanner, out, maze, 10, renderer, false);
+        int pointEnd = mazeDetailsProcess.inputMazeStartEndPoint(input, out, 10, false);
 
         // then
 

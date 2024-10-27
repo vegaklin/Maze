@@ -6,7 +6,9 @@ import backend.academy.maze.factory.GeneratorType;
 import backend.academy.maze.factory.MazeGeneratorFactory;
 import backend.academy.maze.factory.MazeSolverFactory;
 import backend.academy.maze.factory.SolverType;
+import java.io.InputStream;
 import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -17,40 +19,41 @@ import static backend.academy.maze.constant.MazeConstants.SELECTION_ATTEMPTS;
 
 public class MazeAlgorithmProcess {
 
-    public Generator generateAlgorithmChoosing(Scanner scanner, PrintStream out) {
+    public Generator generateAlgorithmChoosing(InputStream input, PrintStream out) {
         printMessageGeneratorChoosing(out);
-        return chooseAlgorithm(scanner, out,
+        return chooseAlgorithm(input, out,
             this::generatorTypeFromMenu,
             GeneratorType.KRUSKAL,
             MazeGeneratorFactory::createMazeGenerator);
     }
 
-    public Solver solveAlgorithmChoosing(Scanner scanner, PrintStream out) {
+    public Solver solveAlgorithmChoosing(InputStream input, PrintStream out) {
         printMessageSolverChoosing(out);
-        return chooseAlgorithm(scanner, out,
+        return chooseAlgorithm(input, out,
             this::solverTypeFromMenu,
             SolverType.BFS,
             MazeSolverFactory::createMazeSolver);
     }
 
-    private <T, U> T chooseAlgorithm(Scanner scanner,
+    private <T, U> T chooseAlgorithm(InputStream input,
                                     PrintStream out,
                                     Function<Integer, U> typeConverter,
                                     U defaultType,
                                     Function<U, T> algorithmFactory) {
-        return chooseAlgorithmOption(scanner, out,
+        return chooseAlgorithmOption(input, out,
             number -> number == 1 || number == 2,
             defaultType,
             typeConverter,
             algorithmFactory);
     }
 
-    private <T, U> T chooseAlgorithmOption(Scanner scanner,
+    private <T, U> T chooseAlgorithmOption(InputStream input,
                                             PrintStream out,
                                             Predicate<Integer> validator,
                                             U defaultValue,
                                             Function<Integer, U> converter,
                                             Function<U, T> factory) {
+        Scanner scanner = new Scanner(input, StandardCharsets.UTF_8);
         int attempts = SELECTION_ATTEMPTS;
         while (attempts > 0) {
             try {

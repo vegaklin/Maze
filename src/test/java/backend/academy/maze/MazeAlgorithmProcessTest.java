@@ -10,9 +10,11 @@ import backend.academy.maze.cli.MazeAlgorithmProcess;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.Scanner;
+import java.nio.charset.StandardCharsets;
 import static backend.academy.maze.constant.MazeConstants.INVALID_INPUT_MESSAGE;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -31,14 +33,14 @@ public class MazeAlgorithmProcessTest {
     void checkDefaultGenerator() {
         // given
 
-        String input = "0\ne\ne\n-1\n3\n12\ng\n-1\n0\ny\n";
+        String inputText = "0\ne\ne\n-1\n3\n12\ng\n-1\n0\ny\n";
 
-        Scanner scanner = new Scanner(input);
+        InputStream input = new ByteArrayInputStream(inputText.getBytes(StandardCharsets.UTF_8));
         PrintStream out = new PrintStream(outputStream);
 
         // when
 
-        Generator generator = mazeAlgorithmProcess.generateAlgorithmChoosing(scanner, out);
+        Generator generator = mazeAlgorithmProcess.generateAlgorithmChoosing(input, out);
 
         // then
 
@@ -51,14 +53,14 @@ public class MazeAlgorithmProcessTest {
     void checkPrimsGenerator() {
         // given
 
-        String input = "2\n";
+        String inputText = "2\n";
 
-        Scanner scanner = new Scanner(input);
+        InputStream input = new ByteArrayInputStream(inputText.getBytes(StandardCharsets.UTF_8));
         PrintStream out = new PrintStream(outputStream);
 
         // when
 
-        Generator generator = mazeAlgorithmProcess.generateAlgorithmChoosing(scanner, out);
+        Generator generator = mazeAlgorithmProcess.generateAlgorithmChoosing(input, out);
 
         // then
 
@@ -70,14 +72,14 @@ public class MazeAlgorithmProcessTest {
     void checkKruskalsGenerator() {
         // given
 
-        String input = "1\n";
+        String inputText = "1\n";
 
-        Scanner scanner = new Scanner(input);
+        InputStream input = new ByteArrayInputStream(inputText.getBytes(StandardCharsets.UTF_8));
         PrintStream out = new PrintStream(outputStream);
 
         // when
 
-        Generator generator = mazeAlgorithmProcess.generateAlgorithmChoosing(scanner, out);
+        Generator generator = mazeAlgorithmProcess.generateAlgorithmChoosing(input, out);
 
         // then
 
@@ -89,14 +91,14 @@ public class MazeAlgorithmProcessTest {
     void checkDefaultSolver() {
         // given
 
-        String input = "-1\ne\ne\n-1\n3\n12\ng\n-1\n0\ny\n";
+        String inputText = "-1\ne\ne\n-1\n3\n12\ng\n-1\n0\ny\n";
 
-        Scanner scanner = new Scanner(input);
+        InputStream input = new ByteArrayInputStream(inputText.getBytes(StandardCharsets.UTF_8));
         PrintStream out = new PrintStream(outputStream);
 
         // when
 
-        Solver solver = mazeAlgorithmProcess.solveAlgorithmChoosing(scanner, out);
+        Solver solver = mazeAlgorithmProcess.solveAlgorithmChoosing(input, out);
 
         // then
 
@@ -109,14 +111,14 @@ public class MazeAlgorithmProcessTest {
     void checkBFSMazeSolver() {
         // given
 
-        String input = "2\n";
+        String inputText = "2\n";
 
-        Scanner scanner = new Scanner(input);
+        InputStream input = new ByteArrayInputStream(inputText.getBytes(StandardCharsets.UTF_8));
         PrintStream out = new PrintStream(outputStream);
 
         // when
 
-        Solver solver = mazeAlgorithmProcess.solveAlgorithmChoosing(scanner, out);
+        Solver solver = mazeAlgorithmProcess.solveAlgorithmChoosing(input, out);
 
         // then
 
@@ -128,14 +130,14 @@ public class MazeAlgorithmProcessTest {
     void checkAStarMazeSolver() {
         // given
 
-        String input = "1\n";
+        String inputText = "1\n";
 
-        Scanner scanner = new Scanner(input);
+        InputStream input = new ByteArrayInputStream(inputText.getBytes(StandardCharsets.UTF_8));
         PrintStream out = new PrintStream(outputStream);
 
         // when
 
-        Solver solver = mazeAlgorithmProcess.solveAlgorithmChoosing(scanner, out);
+        Solver solver = mazeAlgorithmProcess.solveAlgorithmChoosing(input, out);
 
         // then
 

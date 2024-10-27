@@ -5,19 +5,19 @@ import backend.academy.maze.algorithm.solving.Solver;
 import backend.academy.maze.improvement.MazeAdditionalPath;
 import backend.academy.maze.maze.Coordinate;
 import backend.academy.maze.maze.Maze;
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.List;
-import java.util.Scanner;
 import static backend.academy.maze.improvement.MazeDifferentSurfacesMode.addDifferentSurfacesInMaze;
 
 public class MazeProcessing {
 
     public Maze generateMaze(Generator generator,
-                            Scanner scanner,
+                            InputStream input,
                             PrintStream out) {
         MazeDetailsProcess mazeDetailsProcess = new MazeDetailsProcess();
-        int height = mazeDetailsProcess.inputHeight(scanner, out);
-        int width = mazeDetailsProcess.inputWidth(scanner, out);
+        int height = mazeDetailsProcess.inputHeight(input, out);
+        int width = mazeDetailsProcess.inputWidth(input, out);
         return generator.generate(height, width);
     }
 
