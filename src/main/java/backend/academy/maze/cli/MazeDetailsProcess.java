@@ -25,8 +25,11 @@ public class MazeDetailsProcess {
         return validateMazeSize(inputMazeSize(scanner, out));
     }
 
-    public int inputMazeStartEndPoint(Scanner scanner, PrintStream out,
-                                    Maze maze, int height, Renderer renderer,
+    public int inputMazeStartEndPoint(Scanner scanner,
+                                    PrintStream out,
+                                    Maze maze,
+                                    int height,
+                                    Renderer renderer,
                                     boolean isStart) {
         String render = isStart ? renderer.renderWithNumberOfRowsFront(maze)
             : renderer.renderWithNumberOfRowsBack(maze);
@@ -46,9 +49,11 @@ public class MazeDetailsProcess {
             DEFAULT_MAZE_SIZE);
     }
 
-    private int chooseSizePointOption(Scanner scanner, PrintStream out,
+    private int chooseSizePointOption(Scanner scanner,
+                            PrintStream out,
                             Predicate<Integer> validator,
-                            String errorMessage, int defaultValue) {
+                            String errorMessage,
+                            int defaultValue) {
         int attempts = SELECTION_ATTEMPTS;
         while (attempts > 0) {
             try {

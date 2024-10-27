@@ -46,19 +46,25 @@ public class MazeInterface {
         return mazeAlgorithmProcess.solveAlgorithmChoosing(scanner, out);
     }
 
-    private Coordinate getStartCoordinate(Maze maze, Scanner scanner, PrintStream out) {
+    private Coordinate getStartCoordinate(Maze maze,
+                                        Scanner scanner,
+                                        PrintStream out) {
         MazeDetailsProcess mazeDetailsProcess = new MazeDetailsProcess();
         int start = mazeDetailsProcess.inputMazeStartEndPoint(scanner, out, maze, maze.height(), renderer, true);
         return new Coordinate(start, 0);
     }
 
-    private Coordinate getEndCoordinate(Maze maze, Scanner scanner, PrintStream out) {
+    private Coordinate getEndCoordinate(Maze maze,
+                                        Scanner scanner,
+                                        PrintStream out) {
         MazeDetailsProcess mazeDetailsProcess = new MazeDetailsProcess();
         int end = mazeDetailsProcess.inputMazeStartEndPoint(scanner, out, maze, maze.height(), renderer, false);
         return new Coordinate(end, maze.width() - 1);
     }
 
-    private void addStartAndEnd(Maze maze, Coordinate start, Coordinate end) {
+    private void addStartAndEnd(Maze maze,
+                                Coordinate start,
+                                Coordinate end) {
         maze.addPassageToGrid(start.row(), start.col());
         maze.addPassageToGrid(end.row(), end.col());
     }

@@ -25,15 +25,17 @@ public class MazeAlgorithmProcess {
     }
 
     public Solver solveAlgorithmChoosing(Scanner scanner, PrintStream out) {
-                                        printMessageSolverChoosing(out);
+        printMessageSolverChoosing(out);
         return chooseAlgorithm(scanner, out,
             this::solverTypeFromMenu,
             SolverType.BFS,
             MazeSolverFactory::createMazeSolver);
     }
 
-    private <T, U> T chooseAlgorithm(Scanner scanner, PrintStream out,
-                                    Function<Integer, U> typeConverter, U defaultType,
+    private <T, U> T chooseAlgorithm(Scanner scanner,
+                                    PrintStream out,
+                                    Function<Integer, U> typeConverter,
+                                    U defaultType,
                                     Function<U, T> algorithmFactory) {
         return chooseAlgorithmOption(scanner, out,
             number -> number == 1 || number == 2,
@@ -42,10 +44,12 @@ public class MazeAlgorithmProcess {
             algorithmFactory);
     }
 
-    private <T, U> T chooseAlgorithmOption(Scanner scanner, PrintStream out, Predicate<Integer> validator,
-        U defaultValue,
-        Function<Integer, U> converter,
-        Function<U, T> factory) {
+    private <T, U> T chooseAlgorithmOption(Scanner scanner,
+                                            PrintStream out,
+                                            Predicate<Integer> validator,
+                                            U defaultValue,
+                                            Function<Integer, U> converter,
+                                            Function<U, T> factory) {
         int attempts = SELECTION_ATTEMPTS;
         while (attempts > 0) {
             try {

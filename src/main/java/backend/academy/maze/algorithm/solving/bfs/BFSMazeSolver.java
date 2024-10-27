@@ -87,8 +87,11 @@ public class BFSMazeSolver implements Solver {
      * @param visited The array tracking the minimum costs to each cell.
      * @return True if the end coordinate is reached; otherwise, false.
      */
-    private boolean processCurrentBFSNode(Maze maze, BFSNode current, Coordinate end,
-                                        Queue<BFSNode> queue, int[][] visited) {
+    private boolean processCurrentBFSNode(Maze maze,
+                                        BFSNode current,
+                                        Coordinate end,
+                                        Queue<BFSNode> queue,
+                                        int[][] visited) {
         Coordinate coordinate = current.coordinate();
         if (coordinate.equals(end)) {
             return true;
@@ -109,8 +112,11 @@ public class BFSMazeSolver implements Solver {
      * @param queue    The BFS queue for future exploration.
      * @param visited  The array tracking the minimum costs to each cell.
      */
-    private void processBFSNeighbor(Maze maze, BFSNode current, int[] direction,
-                                    Queue<BFSNode> queue, int[][] visited) {
+    private void processBFSNeighbor(Maze maze,
+                                    BFSNode current,
+                                    int[] direction,
+                                    Queue<BFSNode> queue,
+                                    int[][] visited) {
         int newRow = current.coordinate().row() + direction[DIRECTIONS_LEFT_INDEX];
         int newCol = current.coordinate().col() + direction[DIRECTIONS_RIGHT_INDEX];
         if (isValidRowCol(newRow, newCol, maze.height(), maze.width())) {
@@ -132,8 +138,12 @@ public class BFSMazeSolver implements Solver {
      * @param queue   The BFS queue.
      * @param visited The array tracking the minimum costs to each cell.
      */
-    private void updateQueueAndVisited(BFSNode current, int newRow, int newCol,
-                                    int newCost, Queue<BFSNode> queue, int[][] visited) {
+    private void updateQueueAndVisited(BFSNode current,
+                                    int newRow,
+                                    int newCol,
+                                    int newCost,
+                                    Queue<BFSNode> queue,
+                                    int[][] visited) {
         if (newCost < visited[newRow][newCol]) {
             visited[newRow][newCol] = newCost;
             queue.offer(new BFSNode(new Coordinate(newRow, newCol), newCost, current));

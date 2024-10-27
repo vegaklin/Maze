@@ -41,7 +41,10 @@ public class MazeUIPrinter {
         out.print(render);
     }
 
-    public static void printMazePath(PrintStream out, Maze maze, List<Coordinate> mazePath, Renderer renderer) {
+    public static void printMazePath(PrintStream out,
+                                    Maze maze,
+                                    List<Coordinate> mazePath,
+                                    Renderer renderer) {
         if (mazePath.isEmpty()) {
             out.println("No path found between the selected points.");
         } else {

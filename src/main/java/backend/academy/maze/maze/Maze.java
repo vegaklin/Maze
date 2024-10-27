@@ -1,9 +1,10 @@
 package backend.academy.maze.maze;
 
 import lombok.Getter;
-import static backend.academy.maze.validation.MazeValidator.isCorrectRowCol;
+import static backend.academy.maze.validation.MazeValidator.validateRowCol;
 
-@Getter public final class Maze {
+@Getter
+public final class Maze {
     private final int height;
     private final int width;
     private final Cell[][] grid;
@@ -31,32 +32,32 @@ import static backend.academy.maze.validation.MazeValidator.isCorrectRowCol;
     }
 
     public Cell getGridElement(int row, int col) {
-        isCorrectRowCol(row, col, width, height);
+        validateRowCol(row, col, width, height);
         return grid[row][col];
     }
 
     public void addPassageToGrid(int row, int col) {
-        isCorrectRowCol(row, col, width, height);
+        validateRowCol(row, col, width, height);
         grid[row][col] = new Cell(row, col, Type.PASSAGE);
     }
 
     public boolean isPassageInGrid(int row, int col) {
-        isCorrectRowCol(row, col, width, height);
+        validateRowCol(row, col, width, height);
         return grid[row][col].type() == Type.PASSAGE;
     }
 
     public void addWallToGrid(int row, int col) {
-        isCorrectRowCol(row, col, width, height);
+        validateRowCol(row, col, width, height);
         grid[row][col] = new Cell(row, col, Type.WALL);
     }
 
     public boolean isWallInGrid(int row, int col) {
-        isCorrectRowCol(row, col, width, height);
+        validateRowCol(row, col, width, height);
         return grid[row][col].type() == Type.WALL;
     }
 
     public void addModeToGrid(int row, int col, Type type) {
-        isCorrectRowCol(row, col, width, height);
+        validateRowCol(row, col, width, height);
         grid[row][col] = new Cell(row, col, type);
     }
 }

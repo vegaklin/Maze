@@ -20,7 +20,7 @@ public class ConfigParser {
     private void loadConfig(String filePath) {
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filePath);
         if (inputStream == null) {
-            throw new IllegalArgumentException("Файл не найден в ресурсах");
+            throw new IllegalArgumentException("File not found in resources");
         }
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             String line;
@@ -40,17 +40,12 @@ public class ConfigParser {
         if (value == null) {
             throw new IllegalArgumentException("Key not found: " + key);
         }
-
-        if (type == String.class) {
-            return type.cast(value);
-        } else if (type == Integer.class) {
-            return type.cast(Integer.valueOf(value));
-        } else if (type == Boolean.class) {
-            return type.cast(Boolean.valueOf(value));
-        } else if (type == Double.class) {
-            return type.cast(Double.valueOf(value));
-        }
-
-        throw new IllegalArgumentException("Unsupported type: " + type);
+        return switch (type.getSimpleName()) {
+            case "String" -> type.cast(value);
+            case "Integer" -> type.cast(Integer.valueOf(value));
+            case "Boolean" -> type.cast(Boolean.valueOf(value));
+            case "Double" -> type.cast(Double.valueOf(value));
+            default -> throw new IllegalArgumentException("Unsupported type: " + type);
+        };
     }
 }

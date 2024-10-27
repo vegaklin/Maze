@@ -7,7 +7,8 @@ import lombok.Getter;
  * Edge class represents an edge in the maze, connecting two coordinates (cells).
  * It can be used to describe possible passages between cells.
  */
-@Getter public class Edge {
+@Getter
+public class Edge {
     /** The starting coordinate of the edge */
     private final Coordinate from;
     /** The ending coordinate of the edge */

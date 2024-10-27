@@ -13,7 +13,9 @@ import static backend.academy.maze.constant.MazeConstants.SWAMP_COST;
     private final int col;
     private final int cost;
 
-    public Cell(int row, int col, Type type) {
+    public Cell(int row,
+                int col,
+                Type type) {
         this.row = row;
         this.col = col;
         this.type = type;

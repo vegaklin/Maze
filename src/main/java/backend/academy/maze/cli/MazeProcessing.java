@@ -11,7 +11,10 @@ import java.util.Scanner;
 import static backend.academy.maze.improvement.MazeDifferentSurfacesMode.addDifferentSurfacesInMaze;
 
 public class MazeProcessing {
-    public Maze generateMaze(Generator generator, Scanner scanner, PrintStream out) {
+
+    public Maze generateMaze(Generator generator,
+                            Scanner scanner,
+                            PrintStream out) {
         MazeDetailsProcess mazeDetailsProcess = new MazeDetailsProcess();
         int height = mazeDetailsProcess.inputHeight(scanner, out);
         int width = mazeDetailsProcess.inputWidth(scanner, out);
@@ -24,7 +27,10 @@ public class MazeProcessing {
         return addDifferentSurfacesInMaze(mazeWithPaths);
     }
 
-    public List<Coordinate> solveMaze(Solver solver, Maze maze, Coordinate start, Coordinate end) {
+    public List<Coordinate> solveMaze(Solver solver,
+                                    Maze maze,
+                                    Coordinate start,
+                                    Coordinate end) {
         return solver.solve(maze, start, end);
     }
 }

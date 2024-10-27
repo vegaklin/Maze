@@ -34,7 +34,10 @@ public class MazeAdditionalPath {
         return newMaze;
     }
 
-    private void processWalls(Maze maze, int height, int width, boolean isHorizontal) {
+    private void processWalls(Maze maze,
+                            int height,
+                            int width,
+                            boolean isHorizontal) {
         int limit = isHorizontal ? height : width;
         for (int fixedCoordinate = FIXED_COORDINATE_INCREMENT;
              fixedCoordinate < limit - 2;
@@ -85,7 +88,9 @@ public class MazeAdditionalPath {
             new Point(endPoint, fixedCoordinate), endPoint - startPoint + 1);
     }
 
-    private void addPassagesInWalls(Maze maze, int height, int width) {
+    private void addPassagesInWalls(Maze maze,
+                                    int height,
+                                    int width) {
         int maxAttempts = Math.max(height, width) / NUMBER_PATHS_ADD;
         int wallsLength = 0;
         while (maxAttempts > 0 && wallsLength < walls.size()) {

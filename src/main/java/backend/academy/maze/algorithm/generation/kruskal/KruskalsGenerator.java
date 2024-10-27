@@ -74,7 +74,10 @@ public class KruskalsGenerator implements Generator {
      * @param sets The disjoint set used to track connected cells.
      * @param width The width of the maze grid.
      */
-    private void kruskalAlgorithmImplementation(Maze maze, List<Edge> edges, DisjointSet sets, int width) {
+    private void kruskalAlgorithmImplementation(Maze maze,
+                                            List<Edge> edges,
+                                            DisjointSet sets,
+                                            int width) {
         for (Edge edge : edges) {
             Coordinate from = edge.from();
             Coordinate to = edge.to();

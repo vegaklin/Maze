@@ -29,7 +29,9 @@ public class AStarMazeSolver implements Solver {
      * @return A list of coordinates representing the shortest path, or an empty list if no path exists.
      */
     @Override
-    public List<Coordinate> solve(Maze maze, Coordinate start, Coordinate end) {
+    public List<Coordinate> solve(Maze maze,
+                                Coordinate start,
+                                Coordinate end) {
         int height = maze.height();
         int width = maze.width();
         PriorityQueue<AStarNode> open = initializeOpenSet(start, end);
@@ -68,7 +70,9 @@ public class AStarMazeSolver implements Solver {
      * @param start The start coordinate.
      * @return A 2D array containing G-cost values.
      */
-    private int[][] initializeGCost(int height, int width, Coordinate start) {
+    private int[][] initializeGCost(int height,
+                                    int width,
+                                    Coordinate start) {
         int[][] gCost = new int[height][width];
         for (int[] row : gCost) {
             Arrays.fill(row, Integer.MAX_VALUE);
@@ -89,9 +93,12 @@ public class AStarMazeSolver implements Solver {
      * @param closed Tracks cells that have already been evaluated.
      * @return True if the goal has been reached, false otherwise.
      */
-    private boolean processCurrentsAStarNode(Maze maze, AStarNode current,
-                                            Coordinate end, PriorityQueue<AStarNode> open,
-                                            int[][] gCost, boolean[][] closed) {
+    private boolean processCurrentsAStarNode(Maze maze,
+                                            AStarNode current,
+                                            Coordinate end,
+                                            PriorityQueue<AStarNode> open,
+                                            int[][] gCost,
+                                            boolean[][] closed) {
         Coordinate currentCoordinate = current.coordinate();
         if (currentCoordinate.equals(end)) {
             return true;
@@ -115,9 +122,13 @@ public class AStarMazeSolver implements Solver {
      * @param gCost The G-cost grid.
      * @param closed Tracks visited cells.
      */
-    private void processAStarNeighbor(Maze maze, AStarNode current,
-                                    int[] direction, Coordinate end, PriorityQueue<AStarNode> open,
-                                    int[][] gCost, boolean[][] closed) {
+    private void processAStarNeighbor(Maze maze,
+                                    AStarNode current,
+                                    int[] direction,
+                                    Coordinate end,
+                                    PriorityQueue<AStarNode> open,
+                                    int[][] gCost,
+                                    boolean[][] closed) {
         int newRow = current.coordinate().row() + direction[DIRECTIONS_LEFT_INDEX];
         int newCol = current.coordinate().col() + direction[DIRECTIONS_RIGHT_INDEX];
 

@@ -62,7 +62,10 @@ public class PrimsGenerator implements Generator {
      * @param height         The height of the maze grid.
      * @param width          The width of the maze grid.
      */
-    private void primAlgorithmImplementation(Maze maze, PriorityQueue<Edge> availableEdges, int height, int width) {
+    private void primAlgorithmImplementation(Maze maze,
+                                            PriorityQueue<Edge> availableEdges,
+                                            int height,
+                                            int width) {
         maze.addPassageToGrid(PRIMS_START_ROW, PRIMS_START_COL);
         addEdge(maze, availableEdges, PRIMS_START_ROW, PRIMS_START_COL, height, width);
         while (!availableEdges.isEmpty()) {
@@ -86,7 +89,12 @@ public class PrimsGenerator implements Generator {
      * @param height         The height of the maze grid.
      * @param width          The width of the maze grid.
      */
-    private void addEdge(Maze maze, PriorityQueue<Edge> availableEdges, int y, int x, int height, int width) {
+    private void addEdge(Maze maze,
+                        PriorityQueue<Edge> availableEdges,
+                        int y,
+                        int x,
+                        int height,
+                        int width) {
         if (x > 1 && maze.isWallInGrid(y, x - 2)) {
             availableEdges.add(new Edge(new Coordinate(x, y), new Coordinate(x - 2, y), random.nextInt()));
         }
@@ -108,7 +116,9 @@ public class PrimsGenerator implements Generator {
      * @param p1   The first cell to be connected.
      * @param p2   The second cell to be connected.
      */
-    private void connect(Maze maze, Coordinate p1, Coordinate p2) {
+    private void connect(Maze maze,
+                        Coordinate p1,
+                        Coordinate p2) {
         int x = (p1.row() + p2.row()) / 2;
         int y = (p1.col() + p2.col()) / 2;
         maze.addPassageToGrid(p1.col(), p1.row());

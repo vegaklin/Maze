@@ -21,7 +21,10 @@ public class ConsoleRenderer implements Renderer {
         return renderMaze(maze, null, false, true);
     }
 
-    private String renderMaze(Maze maze, List<Coordinate> path, boolean showNumbersFront, boolean showNumbersBack) {
+    private String renderMaze(Maze maze,
+                            List<Coordinate> path,
+                            boolean showNumbersFront,
+                            boolean showNumbersBack) {
         StringBuilder mazeImage = new StringBuilder();
         for (int row = 0; row < maze.height(); row++) {
             if (showNumbersFront) {
@@ -36,7 +39,10 @@ public class ConsoleRenderer implements Renderer {
         return mazeImage.toString();
     }
 
-    private void renderRow(Maze maze, List<Coordinate> path, StringBuilder mazeImage, int row) {
+    private void renderRow(Maze maze,
+                        List<Coordinate> path,
+                        StringBuilder mazeImage,
+                        int row) {
         for (int col = 0; col < maze.width(); col++) {
             Coordinate current = new Coordinate(row, col);
             Type cellType = maze.getGridElement(row, col).type();
