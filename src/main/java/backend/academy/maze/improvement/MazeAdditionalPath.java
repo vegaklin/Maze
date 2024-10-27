@@ -66,20 +66,27 @@ public class MazeAdditionalPath {
         }
     }
 
-    private boolean isPassage(Maze maze, int fixedCoordinate, int variableCoordinate, boolean isHorizontal) {
+    private boolean isPassage(Maze maze,
+                            int fixedCoordinate,
+                            int variableCoordinate,
+                            boolean isHorizontal) {
         return isHorizontal
             ? maze.isPassageInGrid(fixedCoordinate, variableCoordinate)
             : maze.isPassageInGrid(variableCoordinate, fixedCoordinate);
     }
 
-    private boolean isWall(Maze maze, int fixedCoordinate, int variableCoordinate, boolean isHorizontal) {
+    private boolean isWall(Maze maze,
+                        int fixedCoordinate,
+                        int variableCoordinate,
+                        boolean isHorizontal) {
         return isHorizontal
             ? maze.isWallInGrid(fixedCoordinate, variableCoordinate)
             : maze.isWallInGrid(variableCoordinate, fixedCoordinate);
     }
 
     private Wall createWall(int fixedCoordinate,
-                            int startPoint, int endPoint,
+                            int startPoint,
+                            int endPoint,
                             boolean isHorizontal) {
         return isHorizontal
             ? new Wall(new Point(fixedCoordinate, startPoint),

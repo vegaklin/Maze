@@ -32,7 +32,9 @@ public class BFSMazeSolver implements Solver {
      * from start to end, or an empty list if no path is found.
      */
     @Override
-    public List<Coordinate> solve(Maze maze, Coordinate start, Coordinate end) {
+    public List<Coordinate> solve(Maze maze,
+                                Coordinate start,
+                                Coordinate end) {
         int height = maze.height();
         int width = maze.width();
         Queue<BFSNode> queue = initializeQueue(start);
@@ -68,7 +70,9 @@ public class BFSMazeSolver implements Solver {
      * @param start  The starting coordinate to initialize.
      * @return A 2D array representing the minimum cost to each cell, initialized for BFS traversal.
      */
-    private int[][] initializeVisitedArray(int height, int width, Coordinate start) {
+    private int[][] initializeVisitedArray(int height,
+                                        int width,
+                                        Coordinate start) {
         int[][] visited = new int[height][width];
         for (int[] row : visited) {
             Arrays.fill(row, Integer.MAX_VALUE);
